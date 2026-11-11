@@ -5,6 +5,7 @@ import "../globals.css";
 import { getDictionary, locales, type Locale } from "@/lib/i18n/dictionaries";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { CartProvider } from "@/components/cart/CartContext";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -69,9 +70,11 @@ export default function LangLayout({
       <body
         className={`${locale === "ar" ? "font-arabic" : "font-latin"} bg-surface text-ink antialiased`}
       >
-        <Header locale={locale} dict={dict} />
-        {children}
-        <Footer locale={locale} dict={dict} />
+        <CartProvider>
+          <Header locale={locale} dict={dict} />
+          {children}
+          <Footer locale={locale} dict={dict} />
+        </CartProvider>
       </body>
     </html>
   );

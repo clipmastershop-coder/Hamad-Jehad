@@ -1,9 +1,18 @@
 import Link from "next/link";
 import type { Dictionary, Locale } from "@/lib/i18n/dictionaries";
+import type { ConsultingService } from "@/lib/types";
 
 const BOOKING_URL = "https://clipmaster.se/b/iub52";
 
-export default function ConsultingTeaser({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export default function ConsultingTeaser({
+  locale,
+  dict,
+  services,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  services: ConsultingService[];
+}) {
   return (
     <section id="consulting" className="border-b border-white/10 bg-navy-900 text-white">
       <div className="mx-auto max-w-site px-5 py-20 sm:px-8">
@@ -35,10 +44,10 @@ export default function ConsultingTeaser({ locale, dict }: { locale: Locale; dic
         </div>
 
         <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
-          {dict.consultingServices.map((service) => (
-            <div key={service.title} className="border-t border-white/15 pt-5">
-              <h3 className="mb-2 text-lg font-bold">{service.title}</h3>
-              <p className="text-sm leading-relaxed text-white/60">{service.description}</p>
+          {services.map((service) => (
+            <div key={service.id} className="border-t border-white/15 pt-5">
+              <h3 className="mb-2 text-lg font-bold">{service.title[locale]}</h3>
+              <p className="text-sm leading-relaxed text-white/60">{service.description[locale]}</p>
             </div>
           ))}
         </div>

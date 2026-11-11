@@ -3,8 +3,11 @@ import Image from "next/image";
 import type { Dictionary, Locale } from "@/lib/i18n/dictionaries";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileNav from "./MobileNav";
+import CartLink from "@/components/cart/CartLink";
+import { getCurrentUser } from "@/lib/auth";
 
-export default function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export default async function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const user = await getCurrentUser();
   const navItems = [
     { href: `/${locale}#products`, label: dict.nav.products },
     { href: `/${locale}#courses`, label: dict.nav.courses },
@@ -30,6 +33,13 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
         </nav>
 
         <div className="flex items-center gap-3">
+          <Link
+            href={`/${locale}/account${user ? "" : "/login"}`}
+            className="hidden text-sm font-semibold text-ink/70 transition hover:text-navy sm:inline-block"
+          >
+            {locale === "ar" ? (user ? "حسابي" : "دخول") : user ? "My Account" : "Log In"}
+          </Link>
+          <CartLink locale={locale} />
           <LanguageSwitcher locale={locale} />
           <Link
             href={`/${locale}/contact`}

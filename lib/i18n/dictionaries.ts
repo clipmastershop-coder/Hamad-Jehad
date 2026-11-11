@@ -45,12 +45,8 @@ type SectionTitlesDict = {
   testimonials: string;
   newsletter: string;
 };
-type ProductDict = { tag: string; title: string; description: string; price: string; currency: string; url?: string };
-type CourseDict = { title: string; description: string; lessons: string; duration: string; price: string; currency: string };
-type ServiceDict = { title: string; description: string };
 type WhyPointDict = { number: string; title: string; description: string };
 type ArticleDict = { category: string; title: string; excerpt: string; readTime: string };
-type TestimonialDict = { quote: string; name: string; role: string; result: string };
 type NewsletterDict = { title: string; description: string; placeholder: string; button: string; success: string };
 type FooterDict = {
   pitch: string;
@@ -71,14 +67,10 @@ export type Dictionary = {
   story: StoryDict;
   flagshipOffer: FlagshipOfferDict;
   sectionTitles: SectionTitlesDict;
-  products: ProductDict[];
-  courses: CourseDict[];
-  consultingServices: ServiceDict[];
   consultingCta: string;
   consultingCtaSecondary: string;
   whyPoints: WhyPointDict[];
   articles: ArticleDict[];
-  testimonials: TestimonialDict[];
   newsletter: NewsletterDict;
   footer: FooterDict;
   comingSoon: ComingSoonDict;
@@ -145,63 +137,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
       testimonials: "ماذا يقول عملاؤنا",
       newsletter: "اشترك في نشرتنا",
     },
-    products: [
-      {
-        tag: "كتاب",
-        title: "تأسيس وإدارة صالون حلاقة ناجح في السعودية",
-        description: "من حلاق إلى صاحب مشروع ناجح — خطط لنمو مشروعك، إدارة احترافية لصالونك، وابنِ فريقاً ناجحاً.",
-        price: "24.50",
-        currency: "$",
-        url: "https://clipmaster.se/b/VzXgm",
-      },
-      {
-        tag: "كتاب",
-        title: "فن إدارة صالون الحلاقة",
-        description: "دليلك العملي لتتحول من الحرفة إلى التجارة المربحة.",
-        price: "49.00",
-        currency: "$",
-        url: "https://clipmaster.se/b/barbershopmanagement",
-      },
-      {
-        tag: "دليل تسويق",
-        title: "دليل التسويق للصالونات",
-        description: "استراتيجيات عملية لجذب عملاء جدد والحفاظ على الحاليين.",
-        price: "129",
-        currency: "ر.س",
-      },
-    ],
-    courses: [
-      {
-        title: "إدارة صالونات الحلاقة الاحترافية",
-        description: "من التشغيل اليومي إلى بناء فريق عمل منظّم ومربح.",
-        lessons: "14 درس",
-        duration: "5 ساعات",
-        price: "399",
-        currency: "ر.س",
-      },
-      {
-        title: "التسويق الرقمي للصالونات",
-        description: "خطة تسويق عملية عبر السوشيال ميديا وجوجل لصالونك.",
-        lessons: "10 دروس",
-        duration: "3.5 ساعة",
-        price: "299",
-        currency: "ر.س",
-      },
-      {
-        title: "تأسيس مشروع صالون من الصفر",
-        description: "دليل متكامل من الفكرة حتى الافتتاح الرسمي.",
-        lessons: "18 درس",
-        duration: "6 ساعات",
-        price: "499",
-        currency: "ر.س",
-      },
-    ],
-    consultingServices: [
-      { title: "تقييم أداء الصالون", description: "مراجعة شاملة للعمليات والإيرادات وتحديد نقاط التحسين." },
-      { title: "استراتيجية التسويق", description: "خطة مخصصة لجذب عملاء جدد وزيادة الحجوزات." },
-      { title: "استشارة تأسيس صالون جديد", description: "مرافقة كاملة من اختيار الموقع حتى يوم الافتتاح." },
-      { title: "تقييم الحضور الرقمي", description: "تحليل حضورك على السوشيال ميديا وخطة لتحسينه." },
-    ],
     consultingCta: "احجز الآن",
     consultingCtaSecondary: "ابدأ الفحص المجاني",
     whyPoints: [
@@ -227,20 +162,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
         title: "كيف تحسب هامش الربح الحقيقي لصالونك",
         excerpt: "دليل مبسّط لفهم أرقامك المالية واتخاذ قرارات أفضل.",
         readTime: "7 دقائق",
-      },
-    ],
-    testimonials: [
-      {
-        result: "+45% حجوزات",
-        quote: "القوالب والدورات غيّرت طريقة إدارتي لصالوني تمامًا. أرقامي واضحة الآن واتخذ قرارات بثقة.",
-        name: "عبدالله الشهري",
-        role: "مالك صالون، الرياض",
-      },
-      {
-        result: "افتتاح خلال 60 يوم",
-        quote: "الاستشارة ساعدتني أفتتح صالوني الجديد بخطة واضحة من أول يوم بدل التجربة والخطأ.",
-        name: "فهد العتيبي",
-        role: "مستثمر صالونات، جدة",
       },
     ],
     newsletter: {
@@ -325,63 +246,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
       testimonials: "What Our Clients Say",
       newsletter: "Join Our Newsletter",
     },
-    products: [
-      {
-        tag: "Book",
-        title: "Building & Managing a Successful Barbershop in Saudi Arabia",
-        description: "From barber to successful business owner — plans to grow your business, professional salon management, and how to build a winning team.",
-        price: "24.50",
-        currency: "$",
-        url: "https://clipmaster.se/b/VzXgm",
-      },
-      {
-        tag: "Book",
-        title: "The Art of Barbershop Management",
-        description: "Your practical guide to turn the craft into a profitable business.",
-        price: "49.00",
-        currency: "$",
-        url: "https://clipmaster.se/b/barbershopmanagement",
-      },
-      {
-        tag: "Marketing Guide",
-        title: "Salon Marketing Playbook",
-        description: "Practical strategies to attract new clients and retain existing ones.",
-        price: "34",
-        currency: "USD",
-      },
-    ],
-    courses: [
-      {
-        title: "Professional Barbershop Management",
-        description: "From daily operations to building an organized, profitable team.",
-        lessons: "14 lessons",
-        duration: "5 hours",
-        price: "105",
-        currency: "USD",
-      },
-      {
-        title: "Digital Marketing for Salons",
-        description: "A practical marketing plan across social media and Google for your salon.",
-        lessons: "10 lessons",
-        duration: "3.5 hours",
-        price: "79",
-        currency: "USD",
-      },
-      {
-        title: "Launching a Salon From Scratch",
-        description: "A complete guide from the idea to opening day.",
-        lessons: "18 lessons",
-        duration: "6 hours",
-        price: "129",
-        currency: "USD",
-      },
-    ],
-    consultingServices: [
-      { title: "Salon Performance Evaluation", description: "A full review of operations and revenue to identify what to improve." },
-      { title: "Marketing Strategy", description: "A tailored plan to attract new clients and increase bookings." },
-      { title: "New Salon Launch Consulting", description: "Full guidance from choosing a location to opening day." },
-      { title: "Digital Presence Audit", description: "An analysis of your social media presence with a plan to improve it." },
-    ],
     consultingCta: "Book Now",
     consultingCtaSecondary: "Start The Free Assessment",
     whyPoints: [
@@ -407,20 +271,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
         title: "How to Calculate Your Salon's Real Profit Margin",
         excerpt: "A simplified guide to understanding your numbers and making better decisions.",
         readTime: "7 min",
-      },
-    ],
-    testimonials: [
-      {
-        result: "+45% bookings",
-        quote: "The templates and courses completely changed how I manage my salon. My numbers are clear now and I decide with confidence.",
-        name: "Abdullah Al-Shehri",
-        role: "Salon Owner, Riyadh",
-      },
-      {
-        result: "Opened in 60 days",
-        quote: "The consultation helped me open my new salon with a clear plan from day one instead of trial and error.",
-        name: "Fahad Al-Otaibi",
-        role: "Salon Investor, Jeddah",
       },
     ],
     newsletter: {
