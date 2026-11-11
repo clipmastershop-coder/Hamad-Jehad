@@ -35,7 +35,9 @@ type SectionTitlesDict = {
   productsSub: string;
   courses: string;
   coursesSub: string;
+  consultingKicker: string;
   consulting: string;
+  consultingAccent: string;
   consultingSub: string;
   why: string;
   insights: string;
@@ -73,6 +75,7 @@ export type Dictionary = {
   courses: CourseDict[];
   consultingServices: ServiceDict[];
   consultingCta: string;
+  consultingCtaSecondary: string;
   whyPoints: WhyPointDict[];
   articles: ArticleDict[];
   testimonials: TestimonialDict[];
@@ -132,8 +135,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
       productsSub: "أدوات وقوالب جاهزة لتطبيقها في صالونك مباشرة",
       courses: "الدورات التدريبية",
       coursesSub: "تعلّم خطوة بخطوة من خبراء القطاع",
-      consulting: "خدمات الاستشارات",
-      consultingSub: "دعم مباشر ومخصص لاحتياجات مشروعك",
+      consultingKicker: "أكثر من مجرد حلاقة...",
+      consulting: "إنها",
+      consultingAccent: "إدارة ذكية",
+      consultingSub: "حوّل صالونك إلى مشروع يحقق أرباحًا مستدامة. أساعد أصحاب صالونات الحلاقة على تطوير أعمالهم عبر استشارة فردية مباشرة — بعيدًا عن النصائح العامة، وقريبًا من خطوات عملية فعلية.",
       why: "لماذا ClipMaster؟",
       insights: "مقالات ومعرفة",
       insightsSub: "أفكار عملية لإدارة صالون أكثر احترافية",
@@ -197,7 +202,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       { title: "استشارة تأسيس صالون جديد", description: "مرافقة كاملة من اختيار الموقع حتى يوم الافتتاح." },
       { title: "تقييم الحضور الرقمي", description: "تحليل حضورك على السوشيال ميديا وخطة لتحسينه." },
     ],
-    consultingCta: "احجز استشارتك الآن",
+    consultingCta: "احجز الآن",
+    consultingCtaSecondary: "ابدأ الفحص المجاني",
     whyPoints: [
       { number: "01", title: "خبرة متخصصة", description: "محتوى مبني على تجارب حقيقية في قطاع الصالونات." },
       { number: "02", title: "أدوات جاهزة للتطبيق", description: "قوالب وخطط تستخدمها في عملك من اليوم الأول." },
@@ -309,8 +315,10 @@ export const dictionaries: Record<Locale, Dictionary> = {
       productsSub: "Ready-to-use tools and templates for your salon",
       courses: "Training Courses",
       coursesSub: "Learn step by step from industry experts",
-      consulting: "Consulting Services",
-      consultingSub: "Direct, tailored support for your business",
+      consultingKicker: "More than just a barbershop...",
+      consulting: "It's",
+      consultingAccent: "Smart Management.",
+      consultingSub: "Turn your salon into a business that generates sustainable profit. I help barbershop owners grow their business through direct, one-on-one consulting — far from generic advice, and close to real, practical steps.",
       why: "Why ClipMaster?",
       insights: "Insights & Articles",
       insightsSub: "Practical ideas for running a more professional salon",
@@ -374,7 +382,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       { title: "New Salon Launch Consulting", description: "Full guidance from choosing a location to opening day." },
       { title: "Digital Presence Audit", description: "An analysis of your social media presence with a plan to improve it." },
     ],
-    consultingCta: "Book Your Consultation",
+    consultingCta: "Book Now",
+    consultingCtaSecondary: "Start The Free Assessment",
     whyPoints: [
       { number: "01", title: "Specialized Expertise", description: "Content built on real experience in the salon industry." },
       { number: "02", title: "Ready-to-Apply Tools", description: "Templates and plans you can use in your business from day one." },
