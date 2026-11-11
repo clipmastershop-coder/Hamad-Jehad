@@ -22,10 +22,11 @@ type StoryDict = {
   cta: string;
 };
 type FlagshipOfferDict = {
-  eyebrow: string;
+  badge: string;
   headlineLine1: string;
   headlineAccent: string;
   description: string;
+  price: string;
   ctaPrimary: string;
   ctaSecondary: string;
 };
@@ -118,11 +119,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       cta: "اقرأ قصتي كاملة",
     },
     flagshipOffer: {
-      eyebrow: "المنتج الرئيسي",
-      headlineLine1: "دليل ClipMaster الشامل",
-      headlineAccent: "لإدارة صالون مربح.",
-      description: "كل اللي اتعلمته من سنين خبرة في خطوات عملية واضحة — من التأسيس للتسويق للإدارة المالية.",
-      ctaPrimary: "احصل على الدليل الآن",
+      badge: "دورة تدريبية شاملة من ClipMaster",
+      headlineLine1: "ماجستير",
+      headlineAccent: "إدارة الصالونات.",
+      description: "صالونك لا يحتاج وجودك الدائم، يحتاج نظامك الصحيح. دورة شاملة تساعدك على الانتقال من حلاق يدير يومه بالجهد، إلى صاحب مشروع يدير نظاماً متكاملاً قابلاً للنمو.",
+      price: "$97",
+      ctaPrimary: "اشترِ الدورة الآن",
       ctaSecondary: "كل المنتجات",
     },
     sectionTitles: {
@@ -292,11 +294,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       cta: "Read My Full Story",
     },
     flagshipOffer: {
-      eyebrow: "Flagship Product",
-      headlineLine1: "The Complete ClipMaster Guide",
-      headlineAccent: "to running a profitable salon.",
-      description: "Everything I've learned from years of experience, in clear practical steps — from launch to marketing to financial management.",
-      ctaPrimary: "Get The Guide Now",
+      badge: "A Complete Training Course by ClipMaster",
+      headlineLine1: "Salon Management",
+      headlineAccent: "Masterclass.",
+      description: "Your salon doesn't need you there all the time — it needs the right system. A complete course that takes you from a barber running his day through effort, to a business owner running an integrated system built to grow.",
+      price: "$97",
+      ctaPrimary: "Get The Course Now",
       ctaSecondary: "All Products",
     },
     sectionTitles: {
