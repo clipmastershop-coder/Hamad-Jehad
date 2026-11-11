@@ -40,7 +40,9 @@ export default function Hero({ locale, dict }: { locale: Locale; dict: Dictionar
             className="object-cover"
             priority
           />
-          <div className="absolute inset-x-0 bottom-0 bg-navy-900/90 px-5 py-4">
+          <div className="absolute inset-0 bg-[#1a0f08]/35 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 px-5 py-5">
             <p className="font-bold text-white">{dict.hero.founderName}</p>
             <p className="text-sm text-white/70">{dict.hero.founderTitle}</p>
           </div>

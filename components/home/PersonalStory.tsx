@@ -14,6 +14,7 @@ export default function PersonalStory({ locale, dict }: { locale: Locale; dict: 
             sizes="(min-width: 1024px) 40vw, 90vw"
             className="object-cover"
           />
+          <div className="absolute inset-0 bg-[#1a0f08]/25 mix-blend-multiply" />
         </div>
 
         <div className="lg:order-1">
