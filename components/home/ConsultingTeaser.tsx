@@ -7,7 +7,7 @@ export default function ConsultingTeaser({ locale, dict }: { locale: Locale; dic
       <div className="mx-auto max-w-site px-5 py-20 sm:px-8">
         <div className="mb-12 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-xl">
-            <h2 className="mb-3 text-4xl font-extrabold leading-[1.1] sm:text-5xl">{dict.sectionTitles.consulting}</h2>
+            <h2 className="font-display mb-3 text-4xl font-extrabold uppercase leading-[1.1] tracking-tight sm:text-5xl">{dict.sectionTitles.consulting}</h2>
             <p className="text-white/60">{dict.sectionTitles.consultingSub}</p>
           </div>
           <Link

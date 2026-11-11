@@ -8,7 +8,7 @@ export default function FlagshipOffer({ locale, dict }: { locale: Locale; dict: 
         <p className="mb-5 text-sm font-bold uppercase tracking-wide text-cyan">
           {dict.flagshipOffer.eyebrow}
         </p>
-        <h2 className="mx-auto mb-6 max-w-2xl text-4xl font-extrabold leading-[1.1] sm:text-5xl">
+        <h2 className="font-display mx-auto mb-6 max-w-2xl text-4xl font-extrabold uppercase leading-[1.1] tracking-tight sm:text-5xl">
           <span className="block text-white">{dict.flagshipOffer.headlineLine1}</span>
           <span className="block text-cyan">{dict.flagshipOffer.headlineAccent}</span>
         </h2>

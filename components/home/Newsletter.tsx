@@ -11,7 +11,7 @@ export default function Newsletter({ dict }: { dict: Dictionary }) {
       <div className="mx-auto max-w-site px-5 py-16 sm:px-8">
         <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="max-w-md">
-            <h2 className="mb-2 text-2xl font-extrabold sm:text-3xl">{dict.newsletter.title}</h2>
+            <h2 className="font-display mb-2 text-2xl font-extrabold uppercase tracking-tight sm:text-3xl">{dict.newsletter.title}</h2>
             <p className="text-sm text-white/60">{dict.newsletter.description}</p>
           </div>
 

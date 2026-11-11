@@ -12,7 +12,7 @@ export default function ComingSoon({
 }) {
   return (
     <main className="mx-auto max-w-site px-5 py-24 text-center sm:px-8">
-      <h1 className="mb-4 text-4xl font-extrabold text-ink">{title}</h1>
+      <h1 className="font-display mb-4 text-4xl font-extrabold uppercase tracking-tight text-ink">{title}</h1>
       <p className="mb-8 text-ink/60">{dict.comingSoon.description}</p>
       <Link
         href={`/${locale}`}

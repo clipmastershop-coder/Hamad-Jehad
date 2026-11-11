@@ -5,8 +5,17 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  --font-display: var(--font-display-en);
+}
+
+html[dir="rtl"] {
+  --font-display: var(--font-display-ar);
 }
 
 body {
   overflow-x: hidden;
+}
+
+.font-display {
+  font-synthesis: none;
 }

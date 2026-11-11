@@ -18,7 +18,7 @@ export default function PersonalStory({ locale, dict }: { locale: Locale; dict: 
 
         <div className="lg:order-1">
           <p className="mb-5 text-sm font-bold uppercase tracking-wide text-cyan-600">{dict.story.eyebrow}</p>
-          <h2 className="mb-7 text-4xl font-extrabold leading-[1.1] text-ink sm:text-5xl">
+          <h2 className="font-display mb-7 text-4xl font-extrabold uppercase leading-[1.1] tracking-tight text-ink sm:text-5xl">
             <span className="block">{dict.story.headlineLine1}</span>
             <span className="block text-navy">{dict.story.headlineAccent}</span>
           </h2>

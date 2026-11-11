@@ -10,7 +10,7 @@ export default function Hero({ locale, dict }: { locale: Locale; dict: Dictionar
           <p className="mb-6 text-sm font-bold uppercase tracking-wide text-cyan">
             {dict.hero.eyebrow}
           </p>
-          <h1 className="mb-7 text-5xl font-extrabold leading-[1.05] sm:text-6xl">
+          <h1 className="font-display mb-7 text-5xl font-extrabold uppercase leading-[1.05] tracking-tight sm:text-6xl">
             <span className="block text-white">{dict.hero.headlineLine1}</span>
             <span className="block text-cyan">{dict.hero.headlineAccent}</span>
           </h1>

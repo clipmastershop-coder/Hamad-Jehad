@@ -6,7 +6,7 @@ export default function Insights({ locale, dict }: { locale: Locale; dict: Dicti
     <section className="border-b border-ink/10 bg-surface">
       <div className="mx-auto max-w-site px-5 py-20 sm:px-8">
         <div className="mb-12 max-w-xl">
-          <h2 className="mb-3 text-4xl font-extrabold leading-[1.1] text-ink sm:text-5xl">
+          <h2 className="font-display mb-3 text-4xl font-extrabold uppercase leading-[1.1] tracking-tight text-ink sm:text-5xl">
             {dict.sectionTitles.insights}
           </h2>
           <p className="text-ink/60">{dict.sectionTitles.insightsSub}</p>

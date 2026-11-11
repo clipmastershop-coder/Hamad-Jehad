@@ -11,14 +11,14 @@ const config: Config = {
           100: "#d6dcee",
           600: "#1e3380",
           700: "#17296C",
-          900: "#0e1a47",
+          900: "#0a0a0d",
         },
         slate: {
           DEFAULT: "#394f75",
         },
         cyan: {
-          DEFAULT: "#31bbf4",
-          600: "#1ea3dc",
+          DEFAULT: "#00beff",
+          600: "#0098cc",
         },
         surface: "#F7F8FA",
         ink: "#171B2D",
@@ -26,6 +26,7 @@ const config: Config = {
       fontFamily: {
         arabic: ["var(--font-ar)", "sans-serif"],
         latin: ["var(--font-en)", "sans-serif"],
+        display: ["var(--font-display)", "sans-serif"],
       },
       maxWidth: {
         site: "1280px",

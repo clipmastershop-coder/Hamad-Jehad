@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cairo, Manrope } from "next/font/google";
+import { Cairo, Manrope, Anton, Changa } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { getDictionary, locales, type Locale } from "@/lib/i18n/dictionaries";
@@ -16,6 +16,18 @@ const manrope = Manrope({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-en",
+});
+
+const anton = Anton({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-display-en",
+});
+
+const changa = Changa({
+  subsets: ["arabic", "latin"],
+  weight: ["700", "800"],
+  variable: "--font-display-ar",
 });
 
 export function generateStaticParams() {
@@ -49,7 +61,11 @@ export default function LangLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir} className={`${cairo.variable} ${manrope.variable}`}>
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${cairo.variable} ${manrope.variable} ${anton.variable} ${changa.variable}`}
+    >
       <body
         className={`${locale === "ar" ? "font-arabic" : "font-latin"} bg-surface text-ink antialiased`}
       >

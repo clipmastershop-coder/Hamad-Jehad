@@ -5,11 +5,11 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy text-white/80">
+    <footer className="bg-navy-900 text-white/80">
       <div className="mx-auto max-w-site px-5 py-14 sm:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-4">
           <div className="sm:col-span-2">
-            <p className="font-latin mb-3 text-xl font-extrabold text-white">ClipMaster</p>
+            <p className="font-display mb-3 text-xl font-extrabold uppercase tracking-tight text-white">ClipMaster</p>
             <p className="max-w-sm text-sm leading-relaxed text-white/70">{dict.footer.pitch}</p>
           </div>
 
