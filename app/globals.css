@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-x: hidden;
 }
