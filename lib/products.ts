@@ -28,6 +28,15 @@ export const products: Product[] = [
     image: "/images/product-2.svg",
     fileName: "ebook-growth.pdf",
   },
+  {
+    id: "icon-pack",
+    name: "حزمة أيقونات عصرية",
+    description: "+200 أيقونة SVG بأسلوب موحّد، جاهزة للاستخدام في أي مشروع تصميم.",
+    priceCents: 900,
+    currency: "usd",
+    image: "/images/product-3.svg",
+    fileName: "icon-pack.zip",
+  },
 ];
 
 export function getProductById(id: string): Product | undefined {

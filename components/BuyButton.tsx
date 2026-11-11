@@ -31,7 +31,7 @@ export default function BuyButton({ productId }: { productId: string }) {
       <button
         onClick={handleClick}
         disabled={loading}
-        className="rounded-md bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-dark disabled:opacity-60"
+        className="w-full rounded-md bg-brand px-6 py-3 font-semibold text-white transition hover:bg-brand-dark disabled:opacity-60"
       >
         {loading ? "جاري التحويل إلى صفحة الدفع..." : "اشتر الآن"}
       </button>
