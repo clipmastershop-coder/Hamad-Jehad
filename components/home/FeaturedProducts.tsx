@@ -6,7 +6,7 @@ export default function FeaturedProducts({ locale, dict }: { locale: Locale; dic
     <section id="products" className="border-b border-ink/10 bg-surface">
       <div className="mx-auto max-w-site px-5 py-20 sm:px-8">
         <div className="mb-12 max-w-xl">
-          <h2 className="mb-3 text-3xl font-extrabold text-navy sm:text-4xl">
+          <h2 className="mb-3 text-4xl font-extrabold leading-[1.1] text-ink sm:text-5xl">
             {dict.sectionTitles.products}
           </h2>
           <p className="text-ink/60">{dict.sectionTitles.productsSub}</p>

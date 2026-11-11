@@ -3,7 +3,32 @@ export const locales: Locale[] = ["ar", "en"];
 export const defaultLocale: Locale = "ar";
 
 type NavDict = { products: string; courses: string; consulting: string; about: string; blog: string; contact: string };
-type HeroDict = { eyebrow: string; headline: string; sub: string; ctaPrimary: string; ctaSecondary: string };
+type HeroDict = {
+  eyebrow: string;
+  headlineLine1: string;
+  headlineAccent: string;
+  sub: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+  photoPlaceholder: string;
+};
+type StatDict = { value: string; label: string };
+type StoryDict = {
+  eyebrow: string;
+  headlineLine1: string;
+  headlineAccent: string;
+  paragraphs: string[];
+  cta: string;
+  photoPlaceholder: string;
+};
+type FlagshipOfferDict = {
+  eyebrow: string;
+  headlineLine1: string;
+  headlineAccent: string;
+  description: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+};
 type SectionTitlesDict = {
   products: string;
   productsSub: string;
@@ -22,7 +47,7 @@ type CourseDict = { title: string; description: string; lessons: string; duratio
 type ServiceDict = { title: string; description: string };
 type WhyPointDict = { number: string; title: string; description: string };
 type ArticleDict = { category: string; title: string; excerpt: string; readTime: string };
-type TestimonialDict = { quote: string; name: string; role: string };
+type TestimonialDict = { quote: string; name: string; role: string; result: string };
 type NewsletterDict = { title: string; description: string; placeholder: string; button: string; success: string };
 type FooterDict = {
   pitch: string;
@@ -39,6 +64,9 @@ export type Dictionary = {
   nav: NavDict;
   header: { bookConsultation: string };
   hero: HeroDict;
+  stats: StatDict[];
+  story: StoryDict;
+  flagshipOffer: FlagshipOfferDict;
   sectionTitles: SectionTitlesDict;
   products: ProductDict[];
   courses: CourseDict[];
@@ -64,11 +92,38 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     header: { bookConsultation: "احجز استشارة" },
     hero: {
-      eyebrow: "إدارة الصالونات · التسويق · صناعة المحتوى",
-      headline: "طوّر صالونك. ارفع أداءك. وابنِ مشروعاً أقوى.",
+      eyebrow: "خبير إدارة وتسويق صالونات الحلاقة",
+      headlineLine1: "طوّر صالونك. ارفع أداءك.",
+      headlineAccent: "وابنِ مشروعاً أقوى.",
       sub: "المعرفة والأدوات والاستشارات التي تحتاجها لإدارة صالونك باحترافية وتحقيق نمو أفضل.",
       ctaPrimary: "اكتشف المنتجات",
       ctaSecondary: "احجز استشارة",
+      photoPlaceholder: "صورتك الشخصية هنا",
+    },
+    stats: [
+      { value: "+500", label: "صالون استخدم منتجاتنا" },
+      { value: "+1200", label: "متدرب أكمل الدورات" },
+      { value: "12", label: "سنة خبرة في القطاع" },
+      { value: "98%", label: "نسبة رضا العملاء" },
+    ],
+    story: {
+      eyebrow: "قصتي",
+      headlineLine1: "بدأت من صالون واحد.",
+      headlineAccent: "واتعلمت الطريقة الصعبة.",
+      paragraphs: [
+        "زي أي صاحب صالون، بدأت بشغف بس من غير نظام واضح — حجوزات متفرقة، مصاريف مش متابَعة، وتسويق عشوائي.",
+        "غيّرت الموضوع لما بنيت نظام واضح لإدارة الصالون، وده اللي خلاني أقدر أساعد أصحاب صالونات تانية يوصلوا لنفس النتيجة من غير ما ياخدوا وقت التجربة والخطأ اللي أخدته أنا.",
+      ],
+      cta: "اقرأ قصتي كاملة",
+      photoPlaceholder: "صورتك الشخصية هنا",
+    },
+    flagshipOffer: {
+      eyebrow: "المنتج الرئيسي",
+      headlineLine1: "دليل ClipMaster الشامل",
+      headlineAccent: "لإدارة صالون مربح.",
+      description: "كل اللي اتعلمته من سنين خبرة في خطوات عملية واضحة — من التأسيس للتسويق للإدارة المالية.",
+      ctaPrimary: "احصل على الدليل الآن",
+      ctaSecondary: "كل المنتجات",
     },
     sectionTitles: {
       products: "منتجات رقمية مختارة",
@@ -166,11 +221,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ],
     testimonials: [
       {
+        result: "+45% حجوزات",
         quote: "القوالب والدورات غيّرت طريقة إدارتي لصالوني تمامًا. أرقامي واضحة الآن واتخذ قرارات بثقة.",
         name: "عبدالله الشهري",
         role: "مالك صالون، الرياض",
       },
       {
+        result: "افتتاح خلال 60 يوم",
         quote: "الاستشارة ساعدتني أفتتح صالوني الجديد بخطة واضحة من أول يوم بدل التجربة والخطأ.",
         name: "فهد العتيبي",
         role: "مستثمر صالونات، جدة",
@@ -209,11 +266,38 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     header: { bookConsultation: "Book a Consultation" },
     hero: {
-      eyebrow: "Salon Management · Marketing · Content Creation",
-      headline: "Elevate your salon. Sharpen your edge. Build a stronger business.",
+      eyebrow: "Salon Management & Marketing Expert",
+      headlineLine1: "Elevate your salon. Sharpen your edge.",
+      headlineAccent: "Build a stronger business.",
       sub: "The knowledge, tools, and consulting you need to run your salon professionally and grow with confidence.",
       ctaPrimary: "Explore Products",
       ctaSecondary: "Book a Consultation",
+      photoPlaceholder: "Your photo goes here",
+    },
+    stats: [
+      { value: "500+", label: "salons using our products" },
+      { value: "1,200+", label: "students who completed a course" },
+      { value: "12", label: "years of industry experience" },
+      { value: "98%", label: "client satisfaction rate" },
+    ],
+    story: {
+      eyebrow: "My Story",
+      headlineLine1: "I started with one salon.",
+      headlineAccent: "And learned the hard way.",
+      paragraphs: [
+        "Like any salon owner, I started with passion but no real system — scattered bookings, untracked expenses, and random marketing.",
+        "Everything changed once I built a clear system to run the salon — and that's what lets me help other salon owners reach the same result without the years of trial and error it took me.",
+      ],
+      cta: "Read My Full Story",
+      photoPlaceholder: "Your photo goes here",
+    },
+    flagshipOffer: {
+      eyebrow: "Flagship Product",
+      headlineLine1: "The Complete ClipMaster Guide",
+      headlineAccent: "to running a profitable salon.",
+      description: "Everything I've learned from years of experience, in clear practical steps — from launch to marketing to financial management.",
+      ctaPrimary: "Get The Guide Now",
+      ctaSecondary: "All Products",
     },
     sectionTitles: {
       products: "Featured Digital Products",
@@ -311,11 +395,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ],
     testimonials: [
       {
+        result: "+45% bookings",
         quote: "The templates and courses completely changed how I manage my salon. My numbers are clear now and I decide with confidence.",
         name: "Abdullah Al-Shehri",
         role: "Salon Owner, Riyadh",
       },
       {
+        result: "Opened in 60 days",
         quote: "The consultation helped me open my new salon with a clear plan from day one instead of trial and error.",
         name: "Fahad Al-Otaibi",
         role: "Salon Investor, Jeddah",

@@ -12,7 +12,7 @@ export default function LanguageSwitcher({ locale }: { locale: Locale }) {
   return (
     <a
       href={href}
-      className="rounded border border-ink/15 px-3 py-1.5 text-sm font-semibold text-ink/70 transition hover:border-navy hover:text-navy"
+      className="rounded-full border border-ink/15 px-3.5 py-1.5 text-sm font-semibold text-ink/70 transition hover:border-navy hover:text-navy"
     >
       {target === "ar" ? "العربية" : "English"}
     </a>

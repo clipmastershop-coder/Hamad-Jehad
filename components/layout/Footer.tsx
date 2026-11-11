@@ -33,8 +33,8 @@ export default function Footer({ locale, dict }: { locale: Locale; dict: Diction
                 </a>
               </li>
               <li className="flex gap-3 pt-1">
-                <a href="#" aria-label="Instagram" className="transition hover:text-white">Instagram</a>
-                <a href="#" aria-label="X" className="transition hover:text-white">X</a>
+                <a href="https://instagram.com/clipmaster.se" aria-label="Instagram" className="transition hover:text-white">Instagram</a>
+                <a href="https://tiktok.com/@clipmaster.se" aria-label="TikTok" className="transition hover:text-white">TikTok</a>
               </li>
             </ul>
           </div>

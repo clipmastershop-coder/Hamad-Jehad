@@ -41,7 +41,7 @@ export default function MobileNav({
             <Link
               href={bookHref}
               onClick={() => setOpen(false)}
-              className="mt-2 rounded bg-navy px-4 py-2 text-center text-white"
+              className="mt-2 rounded-full bg-navy px-4 py-2.5 text-center text-white"
             >
               {bookLabel}
             </Link>

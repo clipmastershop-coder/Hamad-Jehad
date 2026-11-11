@@ -32,7 +32,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
           <LanguageSwitcher locale={locale} />
           <Link
             href={`/${locale}/contact`}
-            className="hidden rounded bg-navy px-4 py-2 text-sm font-bold text-white transition hover:bg-navy-900 sm:inline-block"
+            className="hidden rounded-full bg-navy px-5 py-2.5 text-sm font-bold text-white transition hover:bg-navy-900 sm:inline-block"
           >
             {dict.header.bookConsultation}
           </Link>
