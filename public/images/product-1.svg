@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="220" viewBox="0 0 400 220">
+  <rect width="400" height="220" fill="#eef2ff"/>
+  <rect x="40" y="40" width="320" height="140" rx="12" fill="#c7d2fe"/>
+  <text x="200" y="118" font-family="system-ui" font-size="20" fill="#3730a3" text-anchor="middle">حزمة قوالب تصميم</text>
+</svg>

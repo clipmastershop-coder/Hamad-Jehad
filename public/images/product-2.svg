@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="220" viewBox="0 0 400 220">
+  <rect width="400" height="220" fill="#f0fdf4"/>
+  <rect x="40" y="40" width="320" height="140" rx="12" fill="#bbf7d0"/>
+  <text x="200" y="118" font-family="system-ui" font-size="20" fill="#166534" text-anchor="middle">كتاب التسويق الرقمي</text>
+</svg>
