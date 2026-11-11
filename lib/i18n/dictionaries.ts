@@ -43,7 +43,7 @@ type SectionTitlesDict = {
   testimonials: string;
   newsletter: string;
 };
-type ProductDict = { tag: string; title: string; description: string; price: string; currency: string };
+type ProductDict = { tag: string; title: string; description: string; price: string; currency: string; url?: string };
 type CourseDict = { title: string; description: string; lessons: string; duration: string; price: string; currency: string };
 type ServiceDict = { title: string; description: string };
 type WhyPointDict = { number: string; title: string; description: string };
@@ -142,11 +142,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     products: [
       {
-        tag: "قالب أعمال",
-        title: "خطة عمل تأسيس صالون حلاقة",
-        description: "نموذج جاهز لتخطيط وتقييم مشروعك قبل الافتتاح أو التوسع.",
-        price: "149",
-        currency: "ر.س",
+        tag: "كتاب",
+        title: "تأسيس وإدارة صالون حلاقة ناجح في السعودية",
+        description: "من حلاق إلى صاحب مشروع ناجح — خطط لنمو مشروعك، إدارة احترافية لصالونك، وابنِ فريقاً ناجحاً.",
+        price: "",
+        currency: "",
+        url: "https://clipmaster.se/b/VzXgm",
       },
       {
         tag: "ملف مالي",
@@ -317,11 +318,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     products: [
       {
-        tag: "Business Template",
-        title: "Barbershop Business Plan Template",
-        description: "A ready-made framework to plan and evaluate your business before launch or expansion.",
-        price: "39",
-        currency: "USD",
+        tag: "Book",
+        title: "Building & Managing a Successful Barbershop in Saudi Arabia",
+        description: "From barber to successful business owner — plans to grow your business, professional salon management, and how to build a winning team.",
+        price: "",
+        currency: "",
+        url: "https://clipmaster.se/b/VzXgm",
       },
       {
         tag: "Financial Sheet",

@@ -13,26 +13,44 @@ export default function FeaturedProducts({ locale, dict }: { locale: Locale; dic
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {dict.products.map((product) => (
-            <article key={product.title} className="flex flex-col border border-ink/10 bg-white p-6">
-              <span className="mb-4 inline-block w-fit rounded-full bg-navy-50 px-3 py-1 text-xs font-bold text-navy">
-                {product.tag}
-              </span>
-              <h3 className="mb-2 text-lg font-bold text-ink">{product.title}</h3>
-              <p className="mb-6 flex-1 text-sm leading-relaxed text-ink/60">{product.description}</p>
-              <div className="flex items-center justify-between border-t border-ink/10 pt-4">
-                <span className="text-lg font-extrabold text-navy">
-                  {product.price} {product.currency}
+          {dict.products.map((product) => {
+            const detailsLabel = locale === "ar" ? "عرض التفاصيل ←" : "View details →";
+            return (
+              <article key={product.title} className="flex flex-col border border-ink/10 bg-white p-6">
+                <span className="mb-4 inline-block w-fit rounded-full bg-navy-50 px-3 py-1 text-xs font-bold text-navy">
+                  {product.tag}
                 </span>
-                <Link
-                  href={`/${locale}/products`}
-                  className="text-sm font-bold text-cyan-600 transition hover:text-navy"
-                >
-                  {locale === "ar" ? "عرض التفاصيل ←" : "View details →"}
-                </Link>
-              </div>
-            </article>
-          ))}
+                <h3 className="mb-2 text-lg font-bold text-ink">{product.title}</h3>
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-ink/60">{product.description}</p>
+                <div className="flex items-center justify-between border-t border-ink/10 pt-4">
+                  {product.price ? (
+                    <span className="text-lg font-extrabold text-navy">
+                      {product.price} {product.currency}
+                    </span>
+                  ) : (
+                    <span />
+                  )}
+                  {product.url ? (
+                    <a
+                      href={product.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-bold text-cyan-600 transition hover:text-navy"
+                    >
+                      {detailsLabel}
+                    </a>
+                  ) : (
+                    <Link
+                      href={`/${locale}/products`}
+                      className="text-sm font-bold text-cyan-600 transition hover:text-navy"
+                    >
+                      {detailsLabel}
+                    </Link>
+                  )}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
