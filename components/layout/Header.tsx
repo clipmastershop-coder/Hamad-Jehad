@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Dictionary, Locale } from "@/lib/i18n/dictionaries";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileNav from "./MobileNav";
@@ -16,8 +17,8 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Diction
   return (
     <header className="sticky top-0 z-20 border-b border-ink/10 bg-white">
       <div className="relative mx-auto flex max-w-site items-center justify-between px-5 py-4 sm:px-8">
-        <Link href={`/${locale}`} className="font-latin text-xl font-extrabold tracking-tight2 text-navy">
-          ClipMaster
+        <Link href={`/${locale}`} className="shrink-0">
+          <Image src="/images/logo.jpg" alt="ClipMaster" width={1170} height={558} className="h-8 w-auto sm:h-9" priority />
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm font-semibold text-ink/70 lg:flex">

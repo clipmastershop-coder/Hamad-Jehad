@@ -10,7 +10,8 @@ type HeroDict = {
   sub: string;
   ctaPrimary: string;
   ctaSecondary: string;
-  photoPlaceholder: string;
+  founderName: string;
+  founderTitle: string;
 };
 type StatDict = { value: string; label: string };
 type StoryDict = {
@@ -19,7 +20,6 @@ type StoryDict = {
   headlineAccent: string;
   paragraphs: string[];
   cta: string;
-  photoPlaceholder: string;
 };
 type FlagshipOfferDict = {
   eyebrow: string;
@@ -92,22 +92,23 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     header: { bookConsultation: "احجز استشارة" },
     hero: {
-      eyebrow: "خبير إدارة وتسويق صالونات الحلاقة",
+      eyebrow: "استشاري وخبير نمو الصالونات",
       headlineLine1: "طوّر صالونك. ارفع أداءك.",
       headlineAccent: "وابنِ مشروعاً أقوى.",
-      sub: "المعرفة والأدوات والاستشارات التي تحتاجها لإدارة صالونك باحترافية وتحقيق نمو أفضل.",
+      sub: "إدارة · تسويق · إعلانات · زيادة الحجوزات — خبرة في تطوير 500+ صالون حول العالم.",
       ctaPrimary: "اكتشف المنتجات",
       ctaSecondary: "احجز استشارة",
-      photoPlaceholder: "صورتك الشخصية هنا",
+      founderName: "حمد",
+      founderTitle: "استشاري وخبير نمو الصالونات",
     },
     stats: [
-      { value: "+500", label: "صالون استخدم منتجاتنا" },
+      { value: "+500", label: "صالون حول العالم" },
       { value: "+1200", label: "متدرب أكمل الدورات" },
       { value: "12", label: "سنة خبرة في القطاع" },
       { value: "98%", label: "نسبة رضا العملاء" },
     ],
     story: {
-      eyebrow: "قصتي",
+      eyebrow: "قصة حمد",
       headlineLine1: "بدأت من صالون واحد.",
       headlineAccent: "واتعلمت الطريقة الصعبة.",
       paragraphs: [
@@ -115,7 +116,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "غيّرت الموضوع لما بنيت نظام واضح لإدارة الصالون، وده اللي خلاني أقدر أساعد أصحاب صالونات تانية يوصلوا لنفس النتيجة من غير ما ياخدوا وقت التجربة والخطأ اللي أخدته أنا.",
       ],
       cta: "اقرأ قصتي كاملة",
-      photoPlaceholder: "صورتك الشخصية هنا",
     },
     flagshipOffer: {
       eyebrow: "المنتج الرئيسي",
@@ -246,7 +246,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       resourcesTitle: "موارد",
       contactTitle: "تواصل معنا",
       whatsapp: "تواصل عبر واتساب",
-      email: "hello@clipmaster.sa",
+      email: "hello@clipmaster.se",
       rights: "جميع الحقوق محفوظة.",
     },
     comingSoon: {
@@ -266,22 +266,23 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     header: { bookConsultation: "Book a Consultation" },
     hero: {
-      eyebrow: "Salon Management & Marketing Expert",
+      eyebrow: "Salon Growth Consultant & Expert",
       headlineLine1: "Elevate your salon. Sharpen your edge.",
       headlineAccent: "Build a stronger business.",
-      sub: "The knowledge, tools, and consulting you need to run your salon professionally and grow with confidence.",
+      sub: "Management · Marketing · Ads · Increasing bookings — experience growing 500+ salons worldwide.",
       ctaPrimary: "Explore Products",
       ctaSecondary: "Book a Consultation",
-      photoPlaceholder: "Your photo goes here",
+      founderName: "Hamad",
+      founderTitle: "Salon Growth Consultant & Expert",
     },
     stats: [
-      { value: "500+", label: "salons using our products" },
+      { value: "500+", label: "salons worldwide" },
       { value: "1,200+", label: "students who completed a course" },
       { value: "12", label: "years of industry experience" },
       { value: "98%", label: "client satisfaction rate" },
     ],
     story: {
-      eyebrow: "My Story",
+      eyebrow: "Hamad's Story",
       headlineLine1: "I started with one salon.",
       headlineAccent: "And learned the hard way.",
       paragraphs: [
@@ -289,7 +290,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "Everything changed once I built a clear system to run the salon — and that's what lets me help other salon owners reach the same result without the years of trial and error it took me.",
       ],
       cta: "Read My Full Story",
-      photoPlaceholder: "Your photo goes here",
     },
     flagshipOffer: {
       eyebrow: "Flagship Product",
@@ -420,7 +420,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       resourcesTitle: "Resources",
       contactTitle: "Contact",
       whatsapp: "Chat on WhatsApp",
-      email: "hello@clipmaster.sa",
+      email: "hello@clipmaster.se",
       rights: "All rights reserved.",
     },
     comingSoon: {

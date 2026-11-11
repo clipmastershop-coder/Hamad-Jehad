@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Dictionary, Locale } from "@/lib/i18n/dictionaries";
-import PhotoPlaceholder from "@/components/ui/PhotoPlaceholder";
 
 export default function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
@@ -31,10 +31,20 @@ export default function Hero({ locale, dict }: { locale: Locale; dict: Dictionar
           </div>
         </div>
 
-        <PhotoPlaceholder
-          label={dict.hero.photoPlaceholder}
-          className="aspect-[4/5] w-full sm:aspect-[5/4]"
-        />
+        <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[5/4]">
+          <Image
+            src="/images/founder.jpg"
+            alt={dict.hero.founderName}
+            fill
+            sizes="(min-width: 1024px) 40vw, 90vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-navy-900/90 px-5 py-4">
+            <p className="font-bold text-white">{dict.hero.founderName}</p>
+            <p className="text-sm text-white/70">{dict.hero.founderTitle}</p>
+          </div>
+        </div>
       </div>
     </section>
   );
