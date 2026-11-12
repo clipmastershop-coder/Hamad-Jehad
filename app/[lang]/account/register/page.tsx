@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
+import { customerRegisterAction } from "@/lib/actions/auth";
 
 export default function AccountRegisterPage() {
   const router = useRouter();
@@ -14,36 +14,19 @@ export default function AccountRegisterPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [done, setDone] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const supabase = createClient();
-    const { error: signUpError } = await supabase.auth.signUp({ email, password });
-    if (signUpError) {
-      setError(signUpError.message);
+    try {
+      await customerRegisterAction(email, password);
+      router.push(`/${locale}/account`);
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "حدث خطأ غير متوقع");
       setLoading(false);
-      return;
     }
-    setDone(true);
-    setLoading(false);
-  }
-
-  if (done) {
-    return (
-      <main className="mx-auto max-w-sm px-5 py-24 text-center">
-        <p className="text-ink/70">
-          {isAr
-            ? "تم إنشاء حسابك. تحقق من بريدك الإلكتروني لتأكيد الحساب ثم سجّل الدخول."
-            : "Your account was created. Check your email to confirm it, then log in."}
-        </p>
-        <Link href={`/${locale}/account/login`} className="mt-4 inline-block font-bold text-navy hover:underline">
-          {isAr ? "تسجيل الدخول" : "Log in"}
-        </Link>
-      </main>
-    );
   }
 
   return (

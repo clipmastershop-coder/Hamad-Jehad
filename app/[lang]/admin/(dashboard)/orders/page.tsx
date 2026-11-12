@@ -1,12 +1,39 @@
-import { createClient } from "@/lib/supabase/server";
+import { getDb } from "@/lib/db";
 
-export default async function AdminOrdersPage() {
-  const supabase = createClient();
-  const { data: orders } = await supabase
-    .from("orders")
-    .select("*, order_items(*)")
-    .order("created_at", { ascending: false })
-    .limit(100);
+type OrderRow = {
+  id: string;
+  email: string;
+  status: string;
+  total_cents: number;
+  currency: string;
+  created_at: string;
+};
+
+type OrderItemRow = {
+  id: string;
+  order_id: string;
+  title_snapshot: string;
+  quantity: number;
+};
+
+export default function AdminOrdersPage() {
+  const db = getDb();
+  const orders = db
+    .prepare("select id, email, status, total_cents, currency, created_at from orders order by created_at desc limit 100")
+    .all() as OrderRow[];
+
+  const itemsByOrder = new Map<string, OrderItemRow[]>();
+  if (orders.length > 0) {
+    const placeholders = orders.map(() => "?").join(",");
+    const items = db
+      .prepare(`select id, order_id, title_snapshot, quantity from order_items where order_id in (${placeholders})`)
+      .all(...orders.map((o) => o.id)) as OrderItemRow[];
+    for (const item of items) {
+      const list = itemsByOrder.get(item.order_id) ?? [];
+      list.push(item);
+      itemsByOrder.set(item.order_id, list);
+    }
+  }
 
   return (
     <div>
@@ -15,7 +42,7 @@ export default async function AdminOrdersPage() {
       </h1>
 
       <div className="divide-y divide-ink/10 border-t border-ink/10">
-        {(orders ?? []).map((order) => (
+        {orders.map((order) => (
           <div key={order.id} className="py-4">
             <div className="flex items-center justify-between">
               <div>
@@ -40,15 +67,18 @@ export default async function AdminOrdersPage() {
               </p>
             </div>
             <ul className="mt-2 text-sm text-ink/60">
-              {(order.order_items ?? []).map((item: { id: string; title_snapshot: { ar: string }; quantity: number }) => (
-                <li key={item.id}>
-                  {item.title_snapshot.ar} × {item.quantity}
-                </li>
-              ))}
+              {(itemsByOrder.get(order.id) ?? []).map((item) => {
+                const title = JSON.parse(item.title_snapshot) as { ar: string };
+                return (
+                  <li key={item.id}>
+                    {title.ar} × {item.quantity}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
-        {(orders ?? []).length === 0 && <p className="py-8 text-sm text-ink/50">لا توجد طلبات بعد.</p>}
+        {orders.length === 0 && <p className="py-8 text-sm text-ink/50">لا توجد طلبات بعد.</p>}
       </div>
     </div>
   );

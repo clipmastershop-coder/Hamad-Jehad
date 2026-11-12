@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { readFile } from "fs/promises";
+import path from "path";
 import { verifyDownloadToken } from "@/lib/downloadToken";
-import { createServiceClient } from "@/lib/supabase/server";
+import { getDb } from "@/lib/db";
 
-const BUCKET = "digital-products";
+const STORAGE_DIR = path.join(process.cwd(), "private", "digital-products");
+
+type OrderItemRow = { item_type: "product" | "course"; item_id: string };
 
 export async function GET(_req: NextRequest, { params }: { params: { token: string } }) {
   const verified = verifyDownloadToken(params.token);
@@ -10,34 +14,46 @@ export async function GET(_req: NextRequest, { params }: { params: { token: stri
     return NextResponse.json({ error: "رابط التحميل غير صالح أو منتهي" }, { status: 403 });
   }
 
-  const supabase = createServiceClient();
+  const db = getDb();
 
-  const { data: orderItem } = await supabase
-    .from("order_items")
-    .select("*, orders!inner(status)")
-    .eq("id", verified.orderItemId)
-    .maybeSingle();
+  const orderItem = db
+    .prepare(
+      `select oi.item_type, oi.item_id, o.status
+       from order_items oi join orders o on o.id = oi.order_id
+       where oi.id = ?`
+    )
+    .get(verified.orderItemId) as (OrderItemRow & { status: string }) | undefined;
 
-  if (!orderItem || orderItem.orders?.status !== "paid") {
+  if (!orderItem || orderItem.status !== "paid") {
     return NextResponse.json({ error: "الطلب غير مؤكد الدفع" }, { status: 403 });
   }
 
   const table = orderItem.item_type === "product" ? "products" : "courses";
-  const { data: record } = await supabase.from(table).select("file_path").eq("id", orderItem.item_id).maybeSingle();
+  const record = db.prepare(`select file_path from ${table} where id = ?`).get(orderItem.item_id) as
+    | { file_path: string | null }
+    | undefined;
 
   if (!record?.file_path) {
     return NextResponse.json({ error: "لا يوجد ملف قابل للتحميل لهذا العنصر" }, { status: 404 });
   }
 
-  const { data: file, error } = await supabase.storage.from(BUCKET).download(record.file_path);
-  if (error || !file) {
+  // منع الخروج من مجلد التخزين عبر مسارات زي ../../
+  const safePath = path.normalize(record.file_path).replace(/^(\.\.(\/|\\|$))+/, "");
+  const filePath = path.join(STORAGE_DIR, safePath);
+  if (!filePath.startsWith(STORAGE_DIR)) {
+    return NextResponse.json({ error: "مسار ملف غير صالح" }, { status: 400 });
+  }
+
+  let fileBuffer: Buffer;
+  try {
+    fileBuffer = await readFile(filePath);
+  } catch {
     return NextResponse.json({ error: "تعذر الوصول للملف" }, { status: 500 });
   }
 
-  const fileName = record.file_path.split("/").pop() ?? "download";
-  const buffer = Buffer.from(await file.arrayBuffer());
+  const fileName = safePath.split("/").pop() ?? "download";
 
-  return new NextResponse(buffer, {
+  return new NextResponse(fileBuffer, {
     headers: {
       "Content-Type": "application/octet-stream",
       "Content-Disposition": `attachment; filename="${fileName}"`,

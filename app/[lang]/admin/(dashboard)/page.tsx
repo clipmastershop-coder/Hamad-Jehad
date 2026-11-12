@@ -1,18 +1,17 @@
-import { createClient } from "@/lib/supabase/server";
+import { getDb } from "@/lib/db";
 
-export default async function AdminOverviewPage() {
-  const supabase = createClient();
+export default function AdminOverviewPage() {
+  const db = getDb();
 
-  const [{ count: productsCount }, { count: coursesCount }, { data: paidOrders }, { count: ordersCount }] =
-    await Promise.all([
-      supabase.from("products").select("*", { count: "exact", head: true }),
-      supabase.from("courses").select("*", { count: "exact", head: true }),
-      supabase.from("orders").select("total_cents, currency").eq("status", "paid"),
-      supabase.from("orders").select("*", { count: "exact", head: true }),
-    ]);
+  const { count: productsCount } = db.prepare("select count(*) as count from products").get() as { count: number };
+  const { count: coursesCount } = db.prepare("select count(*) as count from courses").get() as { count: number };
+  const { count: ordersCount } = db.prepare("select count(*) as count from orders").get() as { count: number };
+  const paidOrders = db
+    .prepare("select total_cents, currency from orders where status = 'paid'")
+    .all() as { total_cents: number; currency: string }[];
 
   const revenueByCurrency = new Map<string, number>();
-  for (const order of paidOrders ?? []) {
+  for (const order of paidOrders) {
     revenueByCurrency.set(order.currency, (revenueByCurrency.get(order.currency) ?? 0) + order.total_cents);
   }
 

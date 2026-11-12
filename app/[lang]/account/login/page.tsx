@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
+import { customerLoginAction } from "@/lib/actions/auth";
 
 export default function AccountLoginPage() {
   const router = useRouter();
@@ -19,15 +19,14 @@ export default function AccountLoginPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-    if (signInError) {
-      setError(signInError.message);
+    try {
+      await customerLoginAction(email, password);
+      router.push(`/${locale}/account`);
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "حدث خطأ غير متوقع");
       setLoading(false);
-      return;
     }
-    router.push(`/${locale}/account`);
-    router.refresh();
   }
 
   return (

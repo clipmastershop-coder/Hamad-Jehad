@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
-import { createServiceClient } from "@/lib/supabase/server";
+import { getDb } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
   const signature = req.headers.get("stripe-signature");
@@ -21,12 +21,11 @@ export async function POST(req: NextRequest) {
     const session = event.data.object as { id: string; metadata?: { order_id?: string } };
     const orderId = session.metadata?.order_id;
     if (orderId) {
-      const supabase = createServiceClient();
-      await supabase
-        .from("orders")
-        .update({ status: "paid", paid_at: new Date().toISOString() })
-        .eq("id", orderId)
-        .eq("stripe_session_id", session.id);
+      const db = getDb();
+      db.prepare("update orders set status = 'paid', paid_at = datetime('now') where id = ? and stripe_session_id = ?").run(
+        orderId,
+        session.id
+      );
     }
   }
 

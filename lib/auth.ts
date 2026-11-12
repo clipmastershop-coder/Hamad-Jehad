@@ -1,27 +1,28 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { getDb } from "@/lib/db";
+import { getSessionUserId } from "@/lib/session";
 
-export async function getCurrentUser() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  return user;
-}
+export type SessionUser = {
+  id: string;
+  email: string;
+  is_admin: number;
+};
 
-export async function getCurrentProfile() {
-  const supabase = createClient();
-  const user = await getCurrentUser();
-  if (!user) return null;
-  const { data } = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
-  return data;
+export function getCurrentUser(): SessionUser | null {
+  const userId = getSessionUserId();
+  if (!userId) return null;
+  const db = getDb();
+  const user = db.prepare("select id, email, is_admin from users where id = ?").get(userId) as
+    | SessionUser
+    | undefined;
+  return user ?? null;
 }
 
 /** يستخدم في صفحات لوحة التحكم: يرجّع المستخدم لو أدمن، وإلا يحوّله لصفحة الدخول */
-export async function requireAdmin(locale: string) {
-  const profile = await getCurrentProfile();
-  if (!profile?.is_admin) {
+export function requireAdmin(locale: string): SessionUser {
+  const user = getCurrentUser();
+  if (!user?.is_admin) {
     redirect(`/${locale}/admin/login`);
   }
-  return profile;
+  return user;
 }

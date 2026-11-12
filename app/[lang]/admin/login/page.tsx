@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
+import { adminLoginAction } from "@/lib/actions/auth";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -17,15 +17,14 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-    if (signInError) {
-      setError(signInError.message);
+    try {
+      await adminLoginAction(email, password);
+      router.push(`/${locale}/admin`);
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "حدث خطأ غير متوقع");
       setLoading(false);
-      return;
     }
-    router.push(`/${locale}/admin`);
-    router.refresh();
   }
 
   return (
