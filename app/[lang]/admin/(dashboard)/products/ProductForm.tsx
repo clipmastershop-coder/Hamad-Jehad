@@ -3,12 +3,15 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { saveProductAction, deleteProductAction } from "@/lib/actions/products";
+import { uploadDigitalFileAction } from "@/lib/actions/upload";
 import type { Product } from "@/lib/types";
 
 export default function ProductForm({ locale, product }: { locale: string; product?: Product }) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [filePath, setFilePath] = useState<string | null>(product?.file_path ?? null);
 
   const [form, setForm] = useState({
     slug: product?.slug ?? "",
@@ -30,6 +33,23 @@ export default function ProductForm({ locale, product }: { locale: string; produ
     setForm((f) => ({ ...f, [key]: value }));
   }
 
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setError(null);
+    try {
+      const data = new FormData();
+      data.set("file", file);
+      const savedName = await uploadDigitalFileAction(locale, data);
+      setFilePath(savedName);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "تعذر رفع الملف");
+    } finally {
+      setUploading(false);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -45,6 +65,7 @@ export default function ProductForm({ locale, product }: { locale: string; produ
         currency: form.currency,
         external_url: form.external_url || null,
         cover_image: form.cover_image || null,
+        file_path: filePath,
         featured: form.featured,
         published: form.published,
       });
@@ -114,6 +135,12 @@ export default function ProductForm({ locale, product }: { locale: string; produ
         <input value={form.external_url} onChange={(e) => update("external_url", e.target.value)} className="input" />
       </Field>
 
+      <Field label="الملف الرقمي (PDF / ZIP) — يُستخدم فقط لو مفيش رابط خارجي">
+        <input type="file" accept=".pdf,.zip,.rar,.epub" onChange={handleFileChange} className="input" disabled={uploading} />
+        {uploading && <p className="mt-1 text-xs text-ink/50">جاري رفع الملف...</p>}
+        {filePath && !uploading && <p className="mt-1 text-xs text-green-600">تم رفع الملف: {filePath}</p>}
+      </Field>
+
       <Field label="رابط صورة الغلاف">
         <input value={form.cover_image} onChange={(e) => update("cover_image", e.target.value)} className="input" />
       </Field>
@@ -134,7 +161,7 @@ export default function ProductForm({ locale, product }: { locale: string; produ
       <div className="flex items-center gap-4">
         <button
           type="submit"
-          disabled={saving}
+          disabled={saving || uploading}
           className="rounded-full bg-navy px-7 py-3 text-sm font-bold text-white hover:bg-navy-900 disabled:opacity-60"
         >
           {saving ? "جاري الحفظ..." : "حفظ"}
