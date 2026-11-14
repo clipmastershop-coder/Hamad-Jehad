@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!--
+  قالب موقع تعريفي/تجاري عام — صالح لأي نوع عميل (مطعم، عيادة، محل، شركة خدمات...)
+  كل جزء فيه معلّم بتعليق "غيّر هذا" يوضح بالضبط أي نص/صورة تبدّلها لكل عميل جديد.
+  لا يحتاج أي تثبيت (npm) — فقط افتح الملف في المتصفح أو استخدم إضافة Live Server.
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- غيّر هذا: عنوان الصفحة ووصفها (يظهران في تبويب المتصفح ونتائج قوقل) -->
+  <title>اسم الشركة | الوصف المختصر لنشاطها</title>
+  <meta name="description" content="وصف قصير وجذاب لنشاط العميل، 150 حرفًا تقريبًا، يظهر في نتائج البحث." />
+
+  <!-- خط عربي احترافي -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <!-- أيقونات -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- Tailwind CSS عبر CDN — بدون أي عملية تثبيت أو بناء -->
+  <script src="https://cdn.tailwindcss.com/3.4.14"></script>
+  <script>
+    // غيّر هذا: ألوان الهوية البصرية للعميل (درجة واحدة كافية، الباقي يُحسب تلقائيًا)
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { tajawal: ['Tajawal', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
+              400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
+              800: '#1e40af', 900: '#1e3a8a',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="font-tajawal text-slate-700 bg-white antialiased">
+
+  <!-- ===================== شريط التنقّل ===================== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100 transition-shadow">
+    <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+      <!-- غيّر هذا: اسم/شعار الشركة -->
+      <a href="#home" class="flex items-center gap-2 text-2xl font-black text-brand-700">
+        <i class="fa-solid fa-circle-nodes"></i>
+        <span>اسم الشركة</span>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-8 font-medium text-slate-600">
+        <li><a href="#home" class="nav-link hover:text-brand-600 transition">الرئيسية</a></li>
+        <li><a href="#services" class="nav-link hover:text-brand-600 transition">خدماتنا</a></li>
+        <li><a href="#about" class="nav-link hover:text-brand-600 transition">من نحن</a></li>
+        <li><a href="#portfolio" class="nav-link hover:text-brand-600 transition">أعمالنا</a></li>
+        <li><a href="#pricing" class="nav-link hover:text-brand-600 transition">الباقات</a></li>
+        <li><a href="#testimonials" class="nav-link hover:text-brand-600 transition">آراء العملاء</a></li>
+      </ul>
+
+      <a href="#contact" class="hidden lg:inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-sm shadow-brand-600/30">
+        تواصل معنا
+      </a>
+
+      <button id="menuBtn" aria-label="فتح القائمة" class="lg:hidden text-2xl text-slate-700">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+
+    <!-- قائمة الموبايل -->
+    <div id="mobileMenu" class="lg:hidden hidden bg-white border-t border-slate-100 px-5 py-4 space-y-3">
+      <a href="#home" class="block py-2 nav-link">الرئيسية</a>
+      <a href="#services" class="block py-2 nav-link">خدماتنا</a>
+      <a href="#about" class="block py-2 nav-link">من نحن</a>
+      <a href="#portfolio" class="block py-2 nav-link">أعمالنا</a>
+      <a href="#pricing" class="block py-2 nav-link">الباقات</a>
+      <a href="#testimonials" class="block py-2 nav-link">آراء العملاء</a>
+      <a href="#contact" class="block mt-2 text-center bg-brand-600 text-white py-2.5 rounded-full font-semibold">تواصل معنا</a>
+    </div>
+  </header>
+
+  <!-- ===================== الهيرو ===================== -->
+  <section id="home" class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 bg-gradient-to-b from-brand-50 to-white overflow-hidden">
+    <div class="blob absolute -top-24 -left-24 w-96 h-96 bg-brand-200/50 rounded-full blur-3xl"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 relative grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal text-center lg:text-right">
+        <span class="inline-block bg-brand-100 text-brand-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
+          <!-- غيّر هذا: شعار/جملة ترحيبية قصيرة -->
+          ✨ نرحّب بزيارتك
+        </span>
+        <h1 class="text-4xl lg:text-5xl font-black leading-tight text-slate-900 mb-6">
+          <!-- غيّر هذا: العنوان الرئيسي — أهم جملة في الصفحة -->
+          عنوان جذّاب يصف خدمتك الأساسية
+          <span class="text-brand-600">بطريقة مميزة</span>
+        </h1>
+        <p class="text-lg text-slate-500 leading-relaxed mb-8 max-w-xl lg:mx-0 mx-auto">
+          <!-- غيّر هذا: وصف قصير (سطرين) يوضح قيمة الخدمة للعميل -->
+          وصف مختصر وواضح لما تقدّمه الشركة، ولماذا يجب على الزائر أن يثق بك
+          ويطلب خدمتك الآن بدل المنافسين.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <a href="#contact" class="bg-brand-600 hover:bg-brand-700 text-white px-7 py-3.5 rounded-full font-bold transition shadow-lg shadow-brand-600/30">
+            اطلب الخدمة الآن
+          </a>
+          <a href="#portfolio" class="bg-white border border-slate-200 hover:border-brand-300 px-7 py-3.5 rounded-full font-bold transition">
+            شاهد أعمالنا
+          </a>
+        </div>
+
+        <div class="flex items-center gap-8 mt-10 justify-center lg:justify-start">
+          <div><p class="text-2xl font-black text-slate-900">+500</p><p class="text-sm text-slate-500">عميل سعيد</p></div>
+          <div class="w-px h-10 bg-slate-200"></div>
+          <div><p class="text-2xl font-black text-slate-900">+120</p><p class="text-sm text-slate-500">مشروع منجز</p></div>
+          <div class="w-px h-10 bg-slate-200"></div>
+          <div><p class="text-2xl font-black text-slate-900">5.0</p><p class="text-sm text-slate-500">تقييم العملاء</p></div>
+        </div>
+      </div>
+
+      <div class="reveal relative">
+        <!-- غيّر هذا: ضع صورة حقيقية للعميل في assets/img وبدّل الرابط بالأسفل -->
+        <div class="aspect-square lg:aspect-[4/5] rounded-[2.5rem] bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-2xl">
+          <div class="text-center px-6">
+            <i class="fa-solid fa-image text-5xl opacity-70 mb-3"></i>
+            <p class="font-semibold opacity-90">ضع هنا صورة رئيسية للعميل<br />(مقاس مربّع أو طولي)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== الخدمات ===================== -->
+  <section id="services" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <p class="text-brand-600 font-bold mb-2">خدماتنا</p>
+        <h2 class="text-3xl lg:text-4xl font-black text-slate-900">ماذا نقدّم لك؟</h2>
+        <p class="text-slate-500 mt-4">نسخ البطاقات الثلاث بالأسفل أو حذف/إضافة حسب عدد خدمات العميل الحقيقية.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- غيّر هذا: كرر هذه البطاقة بعدد الخدمات الحقيقية -->
+        <div class="reveal group p-8 rounded-3xl border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-600/10 transition">
+          <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">اسم الخدمة الأولى</h3>
+          <p class="text-slate-500 leading-relaxed">وصف مختصر لهذه الخدمة وكيف تساعد العميل، في جملتين إلى ثلاث.</p>
+        </div>
+
+        <div class="reveal group p-8 rounded-3xl border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-600/10 transition">
+          <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">اسم الخدمة الثانية</h3>
+          <p class="text-slate-500 leading-relaxed">وصف مختصر لهذه الخدمة وكيف تساعد العميل، في جملتين إلى ثلاث.</p>
+        </div>
+
+        <div class="reveal group p-8 rounded-3xl border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-600/10 transition">
+          <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">اسم الخدمة الثالثة</h3>
+          <p class="text-slate-500 leading-relaxed">وصف مختصر لهذه الخدمة وكيف تساعد العميل، في جملتين إلى ثلاث.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== من نحن ===================== -->
+  <section id="about" class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal relative order-2 lg:order-1">
+        <div class="aspect-video rounded-3xl bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+          <div class="text-center px-6 text-slate-500">
+            <i class="fa-solid fa-image text-4xl mb-3"></i>
+            <p class="font-medium">ضع هنا صورة عن مكان/فريق العميل</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal order-1 lg:order-2">
+        <p class="text-brand-600 font-bold mb-2">من نحن</p>
+        <h2 class="text-3xl lg:text-4xl font-black text-slate-900 mb-5">
+          <!-- غيّر هذا -->
+          قصة وهوية الشركة بجملة قوية
+        </h2>
+        <p class="text-slate-500 leading-relaxed mb-6">
+          <!-- غيّر هذا: فقرة عن تاريخ العميل، رؤيته، ولماذا يختلف عن غيره -->
+          فقرة من 3-4 أسطر تحكي قصة العميل: متى بدأ، ما رؤيته، وما يميّزه عن
+          المنافسين في مجاله.
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-600"></i> نقطة قوة أولى</li>
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-600"></i> نقطة قوة ثانية</li>
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-600"></i> نقطة قوة ثالثة</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== أعمالنا ===================== -->
+  <section id="portfolio" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <p class="text-brand-600 font-bold mb-2">أعمالنا</p>
+        <h2 class="text-3xl lg:text-4xl font-black text-slate-900">نماذج من أعمالنا السابقة</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- غيّر هذا: كرر هذه البطاقة لكل عمل/منتج حقيقي -->
+        <div class="reveal group relative aspect-square rounded-3xl bg-slate-100 overflow-hidden flex items-center justify-center text-slate-400">
+          <i class="fa-solid fa-image text-3xl"></i>
+          <div class="absolute inset-0 bg-brand-900/0 group-hover:bg-brand-900/70 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <p class="text-white font-bold">اسم العمل الأول</p>
+          </div>
+        </div>
+        <div class="reveal group relative aspect-square rounded-3xl bg-slate-100 overflow-hidden flex items-center justify-center text-slate-400">
+          <i class="fa-solid fa-image text-3xl"></i>
+          <div class="absolute inset-0 bg-brand-900/0 group-hover:bg-brand-900/70 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <p class="text-white font-bold">اسم العمل الثاني</p>
+          </div>
+        </div>
+        <div class="reveal group relative aspect-square rounded-3xl bg-slate-100 overflow-hidden flex items-center justify-center text-slate-400">
+          <i class="fa-solid fa-image text-3xl"></i>
+          <div class="absolute inset-0 bg-brand-900/0 group-hover:bg-brand-900/70 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <p class="text-white font-bold">اسم العمل الثالث</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== الباقات/الأسعار ===================== -->
+  <section id="pricing" class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <p class="text-brand-600 font-bold mb-2">الباقات</p>
+        <h2 class="text-3xl lg:text-4xl font-black text-slate-900">اختر الباقة المناسبة لك</h2>
+        <p class="text-slate-500 mt-4">هذا القسم اختياري — احذفه كاملًا لو نشاط العميل لا يحتاج عرض أسعار (مثل عيادة أو شركة تواصل مباشر).</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="reveal p-8 rounded-3xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-lg mb-1">الباقة الأساسية</h3>
+          <p class="text-slate-500 text-sm mb-6">مناسبة لمن يبدأ</p>
+          <p class="text-4xl font-black text-slate-900 mb-6">٩٩ <span class="text-base font-medium text-slate-400">ر.س/شهر</span></p>
+          <ul class="space-y-3 text-sm text-slate-600 mb-8">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1"></i> ميزة أولى</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1"></i> ميزة ثانية</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1"></i> ميزة ثالثة</li>
+          </ul>
+          <a href="#contact" class="block text-center border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white py-3 rounded-full font-bold transition">اختر هذه الباقة</a>
+        </div>
+
+        <div class="reveal p-8 rounded-3xl bg-brand-600 text-white relative lg:scale-105 shadow-2xl shadow-brand-600/30">
+          <span class="absolute -top-3 right-8 bg-white text-brand-700 text-xs font-bold px-3 py-1 rounded-full">الأكثر طلبًا</span>
+          <h3 class="font-bold text-lg mb-1">الباقة المتقدمة</h3>
+          <p class="text-brand-100 text-sm mb-6">الأنسب لمعظم العملاء</p>
+          <p class="text-4xl font-black mb-6">١٩٩ <span class="text-base font-medium text-brand-100">ر.س/شهر</span></p>
+          <ul class="space-y-3 text-sm mb-8">
+            <li class="flex gap-2"><i class="fa-solid fa-check mt-1"></i> كل مزايا الباقة الأساسية</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check mt-1"></i> ميزة إضافية</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check mt-1"></i> دعم أسرع</li>
+          </ul>
+          <a href="#contact" class="block text-center bg-white text-brand-700 py-3 rounded-full font-bold hover:bg-brand-50 transition">اختر هذه الباقة</a>
+        </div>
+
+        <div class="reveal p-8 rounded-3xl border border-slate-200 bg-white">
+          <h3 class="font-bold text-lg mb-1">الباقة الشاملة</h3>
+          <p class="text-slate-500 text-sm mb-6">لمن يريد كل شيء</p>
+          <p class="text-4xl font-black text-slate-900 mb-6">٣٩٩ <span class="text-base font-medium text-slate-400">ر.س/شهر</span></p>
+          <ul class="space-y-3 text-sm text-slate-600 mb-8">
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1"></i> كل المزايا</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1"></i> دعم مخصص</li>
+            <li class="flex gap-2"><i class="fa-solid fa-check text-brand-600 mt-1"></i> تقارير دورية</li>
+          </ul>
+          <a href="#contact" class="block text-center border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white py-3 rounded-full font-bold transition">اختر هذه الباقة</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== آراء العملاء ===================== -->
+  <section id="testimonials" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <p class="text-brand-600 font-bold mb-2">آراء العملاء</p>
+        <h2 class="text-3xl lg:text-4xl font-black text-slate-900">ماذا يقول عملاؤنا؟</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- غيّر هذا: استخدم آراء حقيقية (باسم العميل وصورته لو متاح) -->
+        <div class="reveal p-8 rounded-3xl bg-slate-50 border border-slate-100">
+          <div class="flex gap-1 text-amber-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-6">"نص رأي العميل الحقيقي عن تجربته مع الخدمة، بصيغة طبيعية وصادقة."</p>
+          <p class="font-bold text-slate-900">اسم العميل</p>
+          <p class="text-sm text-slate-500">صفته أو مهنته</p>
+        </div>
+        <div class="reveal p-8 rounded-3xl bg-slate-50 border border-slate-100">
+          <div class="flex gap-1 text-amber-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-6">"نص رأي العميل الحقيقي عن تجربته مع الخدمة، بصيغة طبيعية وصادقة."</p>
+          <p class="font-bold text-slate-900">اسم العميل</p>
+          <p class="text-sm text-slate-500">صفته أو مهنته</p>
+        </div>
+        <div class="reveal p-8 rounded-3xl bg-slate-50 border border-slate-100">
+          <div class="flex gap-1 text-amber-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-6">"نص رأي العميل الحقيقي عن تجربته مع الخدمة، بصيغة طبيعية وصادقة."</p>
+          <p class="font-bold text-slate-900">اسم العميل</p>
+          <p class="text-sm text-slate-500">صفته أو مهنته</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== دعوة للتواصل ===================== -->
+  <section class="py-20 bg-brand-700">
+    <div class="max-w-4xl mx-auto px-5 text-center reveal">
+      <h2 class="text-3xl lg:text-4xl font-black text-white mb-5">جاهز تبدأ معنا؟</h2>
+      <p class="text-brand-100 mb-8">تواصل الآن واحصل على استشارة مجانية خلال 24 ساعة.</p>
+      <a href="#contact" class="inline-flex bg-white text-brand-700 px-8 py-3.5 rounded-full font-bold hover:bg-brand-50 transition">تواصل معنا الآن</a>
+    </div>
+  </section>
+
+  <!-- ===================== تواصل معنا ===================== -->
+  <section id="contact" class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14">
+      <div class="reveal">
+        <p class="text-brand-600 font-bold mb-2">تواصل معنا</p>
+        <h2 class="text-3xl lg:text-4xl font-black text-slate-900 mb-6">نسعد بسماع رسالتك</h2>
+        <p class="text-slate-500 leading-relaxed mb-8">
+          عبّئ النموذج وسنرد عليك في أقرب وقت، أو تواصل معنا مباشرة عبر الوسائل التالية.
+        </p>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
+            <!-- غيّر هذا -->
+            <p class="font-medium">+966 5X XXX XXXX</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-envelope"></i></div>
+            <!-- غيّر هذا -->
+            <p class="font-medium">info@example.com</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div>
+            <!-- غيّر هذا -->
+            <p class="font-medium">المدينة، الدولة</p>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-8">
+          <!-- غيّر هذا: ضع روابط حسابات العميل الحقيقية -->
+          <a href="#" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-brand-600 hover:text-white hover:border-brand-600 transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-brand-600 hover:text-white hover:border-brand-600 transition"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-brand-600 hover:text-white hover:border-brand-600 transition"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+      <form id="contactForm" class="reveal bg-white p-8 rounded-3xl border border-slate-100 shadow-sm space-y-5">
+        <!--
+          هذا النموذج لا يرسل بريدًا من نفسه (الصفحة ثابتة بدون سيرفر).
+          أسهل حل مجاني للمبتدئ: أنشئ حسابًا على formspree.io، وضع رابط
+          الفورم اللي بيعطيك هنا بدل "ضع-رابط-Formspree-هنا". راجع ملف
+          README في هذا المجلد للتفاصيل خطوة بخطوة.
+        -->
+        <input type="hidden" name="_subject" value="رسالة جديدة من موقعك" />
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-2">الاسم الكامل</label>
+          <input type="text" name="name" required class="w-full border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-2">البريد الإلكتروني أو رقم الجوال</label>
+          <input type="text" name="contact" required class="w-full border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-2">رسالتك</label>
+          <textarea name="message" rows="4" required class="w-full border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-xl font-bold transition">إرسال الرسالة</button>
+        <p id="formStatus" class="text-sm text-center hidden"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== الفوتر ===================== -->
+  <footer class="bg-slate-900 text-slate-400 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-4 gap-10 mb-12">
+      <div>
+        <a href="#home" class="flex items-center gap-2 text-xl font-black text-white mb-4">
+          <i class="fa-solid fa-circle-nodes text-brand-500"></i>
+          <span>اسم الشركة</span>
+        </a>
+        <p class="text-sm leading-relaxed">وصف قصير جدًا عن الشركة يتكرر هنا كتذكير بالهوية.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">روابط سريعة</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#services" class="hover:text-white transition">خدماتنا</a></li>
+          <li><a href="#about" class="hover:text-white transition">من نحن</a></li>
+          <li><a href="#portfolio" class="hover:text-white transition">أعمالنا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">تواصل</h4>
+        <ul class="space-y-2 text-sm">
+          <li>info@example.com</li>
+          <li>+966 5X XXX XXXX</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">تابعنا</h4>
+        <div class="flex gap-3">
+          <a href="#" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 pt-6 text-center text-sm">
+      <!-- غيّر هذا: اسم الشركة والسنة -->
+      © <span id="year"></span> اسم الشركة. جميع الحقوق محفوظة.
+      <span class="opacity-60"> — تصميم وتطوير [اسم وكالتك هنا]</span>
+    </div>
+  </footer>
+
+  <button id="backToTop" aria-label="العودة للأعلى" class="hidden fixed bottom-6 left-6 w-11 h-11 rounded-full bg-brand-600 text-white shadow-lg items-center justify-center z-50">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
