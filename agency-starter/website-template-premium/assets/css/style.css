@@ -1,0 +1,50 @@
+html {
+  scroll-behavior: auto; /* Lenis يتولّى السكرول الناعم بدل CSS */
+}
+
+body {
+  cursor: default;
+}
+
+/* حالة البداية لعناصر الهيرو — يرفعها script.js بالحركة */
+[data-hero] {
+  will-change: transform, opacity;
+}
+
+/* عناصر الظهور التدريجي العادية (خارج أقسام الـ pin) */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+#quoteSlider .quote {
+  transition: opacity 0.5s ease;
+}
+
+#quoteDots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#quoteDots button.active {
+  background: #000;
+  transform: scale(1.3);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 999px;
+}

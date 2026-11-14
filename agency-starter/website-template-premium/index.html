@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--
+  القالب "الفاخر" — موقع بإحساس آبل: طباعة ضخمة، سكرول ناعم، تأثيرات
+  حركية مرتبطة بالسكرول (GSAP + ScrollTrigger + Lenis)، تنقّل بين خلفيات
+  فاتحة وغامقة بين الأقسام. مناسب لعملاء بيدفعوا أكثر مقابل شكل مميز.
+
+  لسه ما يحتاج أي تثبيت (لا npm ولا بناء) — كل شيء عبر CDN زي القالب
+  الأساسي، بس بمكتبات حركة إضافية. استبدل كل مكان فيه تعليق "غيّر هذا".
+
+  ⚠️ هذا القالب أثقل شوي من الأساسي بسبب مكتبات الحركة — استخدمه للعملاء
+  اللي بدهم شكل "فاخر"، واستخدم website-template العادي للباقي الأسرع
+  والأبسط.
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- غيّر هذا -->
+  <title>اسم الشركة | إحساس فاخر ومختلف</title>
+  <meta name="description" content="وصف قصير وجذاب لنشاط العميل." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <script src="https://cdn.tailwindcss.com/3.4.14"></script>
+  <script>
+    // غيّر هذا: لون واحد فقط كافي — كل التدرّجات تُحسب تلقائيًا
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            accent: {
+              400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- مكتبات الحركة (كلها مجانية وبدون تثبيت) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="font-inter bg-black text-white antialiased overflow-x-hidden">
+
+  <!-- ===================== شريط التنقّل ===================== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 mix-blend-difference">
+    <nav class="max-w-[1600px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between text-white">
+      <a href="#home" class="text-lg font-semibold tracking-tight">اسم الشركة</a>
+      <ul class="hidden lg:flex items-center gap-10 text-sm font-medium">
+        <li><a href="#feature" class="hover:opacity-60 transition">الفكرة</a></li>
+        <li><a href="#stats" class="hover:opacity-60 transition">الأرقام</a></li>
+        <li><a href="#services" class="hover:opacity-60 transition">خدماتنا</a></li>
+        <li><a href="#story" class="hover:opacity-60 transition">قصتنا</a></li>
+        <li><a href="#contact" class="hover:opacity-60 transition">تواصل</a></li>
+      </ul>
+      <button id="menuBtn" class="lg:hidden text-xl"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+    <div id="mobileMenu" class="lg:hidden hidden bg-black text-white px-6 py-4 space-y-3 text-sm">
+      <a href="#feature" class="block py-1">الفكرة</a>
+      <a href="#stats" class="block py-1">الأرقام</a>
+      <a href="#services" class="block py-1">خدماتنا</a>
+      <a href="#story" class="block py-1">قصتنا</a>
+      <a href="#contact" class="block py-1">تواصل</a>
+    </div>
+  </header>
+
+  <!-- ===================== الهيرو ===================== -->
+  <section id="home" class="relative h-[100svh] min-h-[640px] flex items-center justify-center bg-black overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(59,130,246,0.18),_transparent_60%)]"></div>
+    <div class="relative text-center px-6 max-w-5xl">
+      <p data-hero class="text-accent-400 font-semibold tracking-[0.2em] text-xs sm:text-sm uppercase mb-6 opacity-0">
+        <!-- غيّر هذا -->
+        إطلاق جديد
+      </p>
+      <h1 data-hero class="text-[13vw] sm:text-7xl lg:text-8xl font-semibold tracking-tighter leading-[0.95] mb-6 opacity-0">
+        <!-- غيّر هذا: جملة قوية وقصيرة -->
+        تصميم يتكلّم<br />قبل ما تحكي
+      </h1>
+      <p data-hero class="text-white/60 text-lg sm:text-xl max-w-xl mx-auto mb-10 opacity-0">
+        <!-- غيّر هذا -->
+        وصف قصير وواثق بجملة أو جملتين — خلي القارئ يحس إنه قدام شي مختلف.
+      </p>
+      <div data-hero class="flex flex-wrap gap-4 justify-center opacity-0">
+        <a href="#contact" class="bg-white text-black px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-white/90 transition">ابدأ الآن</a>
+        <a href="#feature" class="border border-white/30 text-white px-8 py-3.5 rounded-full font-semibold text-sm hover:border-white transition">اكتشف المزيد</a>
+      </div>
+    </div>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/40 text-xs tracking-widest animate-bounce">
+      مرّر للأسفل
+    </div>
+  </section>
+
+  <!-- ===================== قسم "الفكرة" (pin + scale) ===================== -->
+  <section id="feature" class="feature-pin relative h-[100svh] min-h-[640px] bg-white text-black overflow-hidden flex items-center">
+    <div class="feature-img absolute inset-0">
+      <!-- غيّر هذا: صورة حقيقية كبيرة وعالية الجودة للعميل -->
+      <div class="w-full h-full bg-gradient-to-br from-slate-200 to-slate-400 flex items-center justify-center">
+        <div class="text-center text-slate-500">
+          <i class="fa-solid fa-image text-6xl mb-4 opacity-50"></i>
+          <p class="font-medium">ضع هنا صورة كبيرة تُعبّر عن النشاط</p>
+        </div>
+      </div>
+    </div>
+    <div class="feature-overlay absolute inset-0 bg-black/0"></div>
+    <div class="relative max-w-[1600px] mx-auto px-6 lg:px-12 w-full">
+      <div class="feature-copy max-w-md ms-auto bg-white/90 backdrop-blur-sm p-8 lg:p-10 rounded-3xl">
+        <p class="text-accent-600 font-semibold text-sm uppercase tracking-wide mb-3">الفكرة</p>
+        <h2 class="text-3xl lg:text-4xl font-semibold tracking-tight mb-4">
+          <!-- غيّر هذا -->
+          كل تفصيلة مدروسة لأجلك
+        </h2>
+        <p class="text-slate-600 leading-relaxed">
+          <!-- غيّر هذا -->
+          فقرة قصيرة توضّح القيمة الحقيقية وراء الخدمة أو المنتج، وليه هاد
+          النشاط مختلف عن غيره.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== قسم الأرقام ===================== -->
+  <section id="stats" class="bg-black py-32">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 grid sm:grid-cols-3 gap-12 text-center">
+      <div>
+        <p class="counter text-6xl lg:text-7xl font-semibold tracking-tighter text-white" data-target="500">0</p>
+        <p class="text-white/50 mt-3 text-sm uppercase tracking-wide">عميل سعيد</p>
+      </div>
+      <div>
+        <p class="counter text-6xl lg:text-7xl font-semibold tracking-tighter text-white" data-target="120">0</p>
+        <p class="text-white/50 mt-3 text-sm uppercase tracking-wide">مشروع منجز</p>
+      </div>
+      <div>
+        <p class="counter text-6xl lg:text-7xl font-semibold tracking-tighter text-white" data-target="98" data-suffix="%">0</p>
+        <p class="text-white/50 mt-3 text-sm uppercase tracking-wide">نسبة الرضا</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== الخدمات ===================== -->
+  <section id="services" class="bg-white text-black py-32">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="max-w-2xl mb-16 reveal">
+        <p class="text-accent-600 font-semibold text-sm uppercase tracking-wide mb-3">خدماتنا</p>
+        <h2 class="text-4xl lg:text-6xl font-semibold tracking-tight">كل اللي تحتاجه، بمكان واحد</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="reveal p-10 rounded-[2rem] bg-slate-50 hover:bg-slate-100 transition">
+          <div class="w-14 h-14 rounded-2xl bg-black text-white flex items-center justify-center text-xl mb-8"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="text-xl font-semibold mb-3">اسم الخدمة الأولى</h3>
+          <p class="text-slate-500 leading-relaxed">وصف مختصر لهذه الخدمة وقيمتها الحقيقية للعميل.</p>
+        </div>
+        <div class="reveal p-10 rounded-[2rem] bg-slate-50 hover:bg-slate-100 transition">
+          <div class="w-14 h-14 rounded-2xl bg-black text-white flex items-center justify-center text-xl mb-8"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="text-xl font-semibold mb-3">اسم الخدمة الثانية</h3>
+          <p class="text-slate-500 leading-relaxed">وصف مختصر لهذه الخدمة وقيمتها الحقيقية للعميل.</p>
+        </div>
+        <div class="reveal p-10 rounded-[2rem] bg-slate-50 hover:bg-slate-100 transition">
+          <div class="w-14 h-14 rounded-2xl bg-black text-white flex items-center justify-center text-xl mb-8"><i class="fa-solid fa-gem"></i></div>
+          <h3 class="text-xl font-semibold mb-3">اسم الخدمة الثالثة</h3>
+          <p class="text-slate-500 leading-relaxed">وصف مختصر لهذه الخدمة وقيمتها الحقيقية للعميل.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== قصتنا (full-bleed) ===================== -->
+  <section id="story" class="relative h-[100svh] min-h-[560px] bg-black flex items-center justify-center overflow-hidden">
+    <div class="story-bg absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-black"></div>
+    <div class="relative text-center px-6 max-w-3xl reveal">
+      <p class="text-accent-400 font-semibold text-sm uppercase tracking-wide mb-4">قصتنا</p>
+      <h2 class="text-4xl lg:text-6xl font-semibold tracking-tight text-white mb-6">
+        <!-- غيّر هذا -->
+        بدأت الفكرة من شغف حقيقي
+      </h2>
+      <p class="text-white/60 text-lg leading-relaxed">
+        فقرة عن تاريخ النشاط ورؤيته، بأسلوب قصصي بسيط يخلي القارئ يتفاعل
+        مع القصة بدل ما يقرأ معلومات جافة.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== آراء العملاء (quote slider) ===================== -->
+  <section class="bg-white text-black py-32">
+    <div class="max-w-3xl mx-auto px-6 text-center reveal">
+      <p class="text-accent-600 font-semibold text-sm uppercase tracking-wide mb-8">آراء العملاء</p>
+      <div id="quoteSlider" class="relative min-h-[160px]">
+        <blockquote class="quote text-2xl lg:text-3xl font-medium tracking-tight leading-snug">
+          "رأي حقيقي أول عن تجربته مع الخدمة، بصيغة طبيعية وصادقة تعكس القيمة الفعلية."
+        </blockquote>
+        <blockquote class="quote hidden text-2xl lg:text-3xl font-medium tracking-tight leading-snug">
+          "رأي حقيقي ثانٍ يوضّح نقطة قوة مختلفة في تجربة العميل مع الخدمة."
+        </blockquote>
+        <blockquote class="quote hidden text-2xl lg:text-3xl font-medium tracking-tight leading-snug">
+          "رأي حقيقي ثالث يُظهر سبب تكرار العميل للتعامل مع هذا النشاط."
+        </blockquote>
+      </div>
+      <p class="mt-8 font-semibold">اسم العميل</p>
+      <p class="text-slate-500 text-sm">صفته أو مهنته</p>
+      <div id="quoteDots" class="flex justify-center gap-2 mt-8"></div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ضخم ===================== -->
+  <section class="bg-black py-36">
+    <div class="max-w-4xl mx-auto px-6 text-center reveal">
+      <h2 class="text-5xl lg:text-7xl font-semibold tracking-tighter text-white mb-8">جاهز تبدأ؟</h2>
+      <a href="#contact" class="inline-flex bg-white text-black px-10 py-4 rounded-full font-semibold hover:bg-white/90 transition">تواصل معنا الآن</a>
+    </div>
+  </section>
+
+  <!-- ===================== تواصل ===================== -->
+  <section id="contact" class="bg-white text-black py-32">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16">
+      <div class="reveal">
+        <p class="text-accent-600 font-semibold text-sm uppercase tracking-wide mb-4">تواصل معنا</p>
+        <h2 class="text-4xl lg:text-5xl font-semibold tracking-tight mb-8">لنبدأ مشروعك</h2>
+        <div class="space-y-6 text-slate-600">
+          <p class="flex items-center gap-4"><i class="fa-solid fa-phone w-6"></i> +966 5X XXX XXXX</p>
+          <p class="flex items-center gap-4"><i class="fa-solid fa-envelope w-6"></i> info@example.com</p>
+          <p class="flex items-center gap-4"><i class="fa-solid fa-location-dot w-6"></i> المدينة، الدولة</p>
+        </div>
+      </div>
+      <form id="contactForm" class="reveal space-y-6">
+        <input type="hidden" name="_subject" value="رسالة جديدة من الموقع" />
+        <div class="border-b border-slate-200 focus-within:border-black transition pb-2">
+          <label class="block text-xs text-slate-400 mb-1">الاسم الكامل</label>
+          <input type="text" name="name" required class="w-full bg-transparent focus:outline-none text-lg" />
+        </div>
+        <div class="border-b border-slate-200 focus-within:border-black transition pb-2">
+          <label class="block text-xs text-slate-400 mb-1">البريد أو رقم الجوال</label>
+          <input type="text" name="contact" required class="w-full bg-transparent focus:outline-none text-lg" />
+        </div>
+        <div class="border-b border-slate-200 focus-within:border-black transition pb-2">
+          <label class="block text-xs text-slate-400 mb-1">رسالتك</label>
+          <textarea name="message" rows="2" required class="w-full bg-transparent focus:outline-none text-lg resize-none"></textarea>
+        </div>
+        <button type="submit" class="bg-black text-white px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-black/80 transition">إرسال</button>
+        <p id="formStatus" class="text-sm hidden"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== الفوتر ===================== -->
+  <footer class="bg-black text-white/50 py-12 text-sm">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© <span id="year"></span> اسم الشركة. جميع الحقوق محفوظة.</p>
+      <p class="opacity-60">تصميم وتطوير [اسم وكالتك هنا]</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
