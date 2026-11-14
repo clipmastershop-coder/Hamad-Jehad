@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--
+  موقع مخصّص لعميل حقيقي تم إيجاده عبر رابط Google Maps:
+  "Barber And Friends - Kungsholmen" — صالون حلاقة رجالي في ستوكهولم.
+
+  بيانات حقيقية مؤكدة من رابط الخرائط: اسم النشاط + العنوان الكامل.
+  كل ما عدا ذلك (الهاتف، ساعات العمل، الأسعار، التقييمات، الصور، روابط
+  الحجز والسوشيال ميديا) بيانات تجريبية توضيحية فقط — راجع NOTES.md في
+  هذا المجلد لمعرفة بالضبط ما يجب استبداله قبل إرسال الموقع للعميل الحقيقي.
+-->
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barber And Friends — Kungsholmen, Stockholm</title>
+  <meta name="description" content="Barber And Friends Kungsholmen — classic men's haircuts, beard trims and hot towel shaves in the heart of Kungsholmen, Stockholm." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <script src="https://cdn.tailwindcss.com/3.4.14"></script>
+  <script>
+    // TODO: استبدل درجة اللون 600 بلون الهوية الحقيقي للعميل إن أعطاك واحدًا
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'], display: ['"Bebas Neue"', 'sans-serif'] },
+          colors: {
+            brand: {
+              50: '#fdf8ef', 100: '#faeccb', 200: '#f3d78f', 300: '#ecc158',
+              400: '#e3a930', 500: '#cf8d1f', 600: '#b3791c', 700: '#8c5d19',
+              800: '#6f4a1a', 900: '#5c3e19',
+            },
+            ink: { 900: '#0e0e10', 800: '#17171a', 700: '#222226' },
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="font-inter bg-ink-900 text-slate-300 antialiased">
+
+  <!-- ===================== Navbar ===================== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 bg-ink-900/90 backdrop-blur border-b border-white/5 transition-shadow">
+    <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-2 text-2xl font-display tracking-wide text-white">
+        <i class="fa-solid fa-scissors text-brand-400"></i>
+        <span>BARBER <span class="text-brand-400">&amp;</span> FRIENDS</span>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-8 font-medium text-slate-300 text-sm uppercase tracking-wide">
+        <li><a href="#home" class="nav-link hover:text-brand-400 transition">Home</a></li>
+        <li><a href="#services" class="nav-link hover:text-brand-400 transition">Services</a></li>
+        <li><a href="#about" class="nav-link hover:text-brand-400 transition">About</a></li>
+        <li><a href="#gallery" class="nav-link hover:text-brand-400 transition">Gallery</a></li>
+        <li><a href="#reviews" class="nav-link hover:text-brand-400 transition">Reviews</a></li>
+        <li><a href="#location" class="nav-link hover:text-brand-400 transition">Location</a></li>
+      </ul>
+
+      <!-- TODO: ضع رابط الحجز الحقيقي (Bokadirekt/Fresha/واتساب) بدل # -->
+      <a href="#contact" class="hidden lg:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-ink-900 px-5 py-2.5 rounded-full font-bold text-sm uppercase tracking-wide transition">
+        Book Now
+      </a>
+
+      <button id="menuBtn" aria-label="Open menu" class="lg:hidden text-2xl text-white">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+
+    <div id="mobileMenu" class="lg:hidden hidden bg-ink-900 border-t border-white/5 px-5 py-4 space-y-3 text-sm uppercase tracking-wide">
+      <a href="#home" class="block py-2 nav-link">Home</a>
+      <a href="#services" class="block py-2 nav-link">Services</a>
+      <a href="#about" class="block py-2 nav-link">About</a>
+      <a href="#gallery" class="block py-2 nav-link">Gallery</a>
+      <a href="#reviews" class="block py-2 nav-link">Reviews</a>
+      <a href="#location" class="block py-2 nav-link">Location</a>
+      <a href="#contact" class="block mt-2 text-center bg-brand-500 text-ink-900 py-2.5 rounded-full font-bold">Book Now</a>
+    </div>
+  </header>
+
+  <!-- ===================== Hero ===================== -->
+  <section id="home" class="relative pt-40 pb-24 lg:pt-52 lg:pb-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-800 to-ink-900"></div>
+    <div class="blob absolute -top-24 -right-24 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 relative grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal text-center lg:text-left">
+        <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-brand-300 text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+          <i class="fa-solid fa-location-dot"></i> Kungsholmen, Stockholm
+        </span>
+        <h1 class="text-4xl lg:text-6xl font-display tracking-wide leading-[1.05] text-white mb-6">
+          CLASSIC CUTS.<br />
+          <span class="text-brand-400">MODERN STYLE.</span>
+        </h1>
+        <p class="text-lg text-slate-400 leading-relaxed mb-8 max-w-xl lg:mx-0 mx-auto">
+          Barber And Friends is Kungsholmen's neighborhood barbershop for sharp
+          haircuts, precise beard work and a proper hot towel shave — walk-ins
+          welcome, regulars treated like family.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <a href="#contact" class="bg-brand-500 hover:bg-brand-400 text-ink-900 px-7 py-3.5 rounded-full font-bold uppercase tracking-wide text-sm transition">
+            Book an Appointment
+          </a>
+          <a href="#services" class="border border-white/15 hover:border-brand-400 text-white px-7 py-3.5 rounded-full font-bold uppercase tracking-wide text-sm transition">
+            See Services
+          </a>
+        </div>
+
+        <div class="flex items-center gap-8 mt-10 justify-center lg:justify-start">
+          <!-- TODO: استبدل هذه الأرقام بأرقام حقيقية إن توفرت (عدد التقييمات الفعلي من خرائط قوقل) -->
+          <div><p class="text-2xl font-display text-white">4.8<i class="fa-solid fa-star text-brand-400 text-base ms-1"></i></p><p class="text-xs text-slate-500 uppercase tracking-wide">Google Rating*</p></div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div><p class="text-2xl font-display text-white">10+</p><p class="text-xs text-slate-500 uppercase tracking-wide">Years on Kungsholmen*</p></div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div><p class="text-2xl font-display text-white">Mon–Sat</p><p class="text-xs text-slate-500 uppercase tracking-wide">Open Daily*</p></div>
+        </div>
+        <p class="text-xs text-slate-600 mt-3">*Placeholder stats — replace with the shop's real numbers.</p>
+      </div>
+
+      <div class="reveal relative">
+        <div class="aspect-square lg:aspect-[4/5] rounded-[2.5rem] bg-gradient-to-br from-ink-700 to-ink-900 border border-white/10 flex items-center justify-center shadow-2xl">
+          <div class="text-center px-6 text-slate-500">
+            <i class="fa-solid fa-image text-5xl opacity-50 mb-3"></i>
+            <p class="font-medium">Put a real shop / barber photo here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Services ===================== -->
+  <section id="services" class="py-24 bg-ink-900">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <p class="text-brand-400 font-bold uppercase tracking-wide text-sm mb-2">Services</p>
+        <h2 class="text-3xl lg:text-4xl font-display tracking-wide text-white">What We Offer</h2>
+        <p class="text-slate-500 mt-4 text-sm">Prices below are placeholders — swap in the shop's real price list.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="reveal group p-8 rounded-2xl border border-white/10 hover:border-brand-500/40 bg-ink-800 transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-14 h-14 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-scissors"></i></div>
+            <span class="text-brand-400 font-display text-xl">350 kr</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Classic Haircut</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">A precise cut tailored to your style, finished with a wash and styling.</p>
+        </div>
+
+        <div class="reveal group p-8 rounded-2xl border border-white/10 hover:border-brand-500/40 bg-ink-800 transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-14 h-14 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-mitten"></i></div>
+            <span class="text-brand-400 font-display text-xl">250 kr</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Beard Trim &amp; Shape</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Clean lines and a sharp shape to keep your beard looking its best.</p>
+        </div>
+
+        <div class="reveal group p-8 rounded-2xl border border-white/10 hover:border-brand-500/40 bg-ink-800 transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-14 h-14 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-droplet"></i></div>
+            <span class="text-brand-400 font-display text-xl">300 kr</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Hot Towel Shave</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">A traditional straight-razor shave with hot towels for the smoothest finish.</p>
+        </div>
+
+        <div class="reveal group p-8 rounded-2xl border border-white/10 hover:border-brand-500/40 bg-ink-800 transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-14 h-14 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-user-tie"></i></div>
+            <span class="text-brand-400 font-display text-xl">550 kr</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Cut + Beard Combo</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Our most popular package — full haircut plus beard trim in one visit.</p>
+        </div>
+
+        <div class="reveal group p-8 rounded-2xl border border-white/10 hover:border-brand-500/40 bg-ink-800 transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-14 h-14 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-child"></i></div>
+            <span class="text-brand-400 font-display text-xl">200 kr</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Kids Haircut</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">A relaxed, friendly cut for younger guests (12 and under).</p>
+        </div>
+
+        <div class="reveal group p-8 rounded-2xl border border-white/10 hover:border-brand-500/40 bg-ink-800 transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-14 h-14 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl"><i class="fa-solid fa-palette"></i></div>
+            <span class="text-brand-400 font-display text-xl">From 400 kr</span>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Hair &amp; Beard Coloring</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Cover grey or go bold — color services tailored to your look.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== About ===================== -->
+  <section id="about" class="py-24 bg-ink-800">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal relative order-2 lg:order-1">
+        <div class="aspect-video rounded-2xl bg-gradient-to-br from-ink-700 to-ink-900 border border-white/10 flex items-center justify-center">
+          <div class="text-center px-6 text-slate-500">
+            <i class="fa-solid fa-image text-4xl mb-3"></i>
+            <p class="font-medium">Put a real photo of the barbers / interior here</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal order-1 lg:order-2">
+        <p class="text-brand-400 font-bold uppercase tracking-wide text-sm mb-2">About Us</p>
+        <h2 class="text-3xl lg:text-4xl font-display tracking-wide text-white mb-5">
+          Your Neighborhood Barbershop on Kungsholmen
+        </h2>
+        <p class="text-slate-400 leading-relaxed mb-6">
+          <!-- TODO: استبدل هذه الفقرة بقصة حقيقية عن الصالون (تاريخه، أصحابه، فلسفته) -->
+          Barber And Friends was built around one idea: a proper haircut
+          shouldn't feel rushed. Our chairs are run by barbers who take the
+          time to get the details right, in a shop that feels more like a
+          living room than a salon. Replace this paragraph with the real
+          story once the owner shares it.
+        </p>
+        <ul class="space-y-3 text-slate-300">
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-400"></i> Experienced, detail-focused barbers</li>
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-400"></i> Walk-ins welcome, bookings prioritized</li>
+          <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-400"></i> Central Kungsholmen location</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Gallery ===================== -->
+  <section id="gallery" class="py-24 bg-ink-900">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <p class="text-brand-400 font-bold uppercase tracking-wide text-sm mb-2">Gallery</p>
+        <h2 class="text-3xl lg:text-4xl font-display tracking-wide text-white">The Shop &amp; The Work</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="reveal aspect-square rounded-2xl bg-ink-800 border border-white/10 flex items-center justify-center text-slate-600"><i class="fa-solid fa-image text-2xl"></i></div>
+        <div class="reveal aspect-square rounded-2xl bg-ink-800 border border-white/10 flex items-center justify-center text-slate-600"><i class="fa-solid fa-image text-2xl"></i></div>
+        <div class="reveal aspect-square rounded-2xl bg-ink-800 border border-white/10 flex items-center justify-center text-slate-600"><i class="fa-solid fa-image text-2xl"></i></div>
+        <div class="reveal aspect-square rounded-2xl bg-ink-800 border border-white/10 flex items-center justify-center text-slate-600"><i class="fa-solid fa-image text-2xl"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Reviews ===================== -->
+  <section id="reviews" class="py-24 bg-ink-800">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <p class="text-brand-400 font-bold uppercase tracking-wide text-sm mb-2">Reviews</p>
+        <h2 class="text-3xl lg:text-4xl font-display tracking-wide text-white">What Customers Say</h2>
+        <p class="text-slate-500 mt-4 text-sm">Placeholder quotes — copy 3 real reviews from Google Maps once you have the owner's permission to use them.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="reveal p-8 rounded-2xl bg-ink-900 border border-white/10">
+          <div class="flex gap-1 text-brand-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-400 leading-relaxed mb-6">"Placeholder review text — replace with a real customer quote."</p>
+          <p class="font-bold text-white">Customer Name</p>
+          <p class="text-sm text-slate-500">Google review</p>
+        </div>
+        <div class="reveal p-8 rounded-2xl bg-ink-900 border border-white/10">
+          <div class="flex gap-1 text-brand-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-400 leading-relaxed mb-6">"Placeholder review text — replace with a real customer quote."</p>
+          <p class="font-bold text-white">Customer Name</p>
+          <p class="text-sm text-slate-500">Google review</p>
+        </div>
+        <div class="reveal p-8 rounded-2xl bg-ink-900 border border-white/10">
+          <div class="flex gap-1 text-brand-400 mb-4">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-slate-400 leading-relaxed mb-6">"Placeholder review text — replace with a real customer quote."</p>
+          <p class="font-bold text-white">Customer Name</p>
+          <p class="text-sm text-slate-500">Google review</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="py-20 bg-gradient-to-r from-brand-700 to-brand-500">
+    <div class="max-w-4xl mx-auto px-5 text-center reveal">
+      <h2 class="text-3xl lg:text-4xl font-display tracking-wide text-ink-900 mb-5">Ready for a fresh cut?</h2>
+      <p class="text-ink-900/80 mb-8">Book your chair at Barber And Friends, Kungsholmen.</p>
+      <a href="#contact" class="inline-flex bg-ink-900 text-white px-8 py-3.5 rounded-full font-bold uppercase tracking-wide text-sm hover:bg-ink-800 transition">Book Now</a>
+    </div>
+  </section>
+
+  <!-- ===================== Location + Contact ===================== -->
+  <section id="location" class="py-24 bg-ink-900">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-10 items-stretch">
+      <div class="reveal rounded-2xl overflow-hidden border border-white/10 min-h-[320px]">
+        <!-- عنوان حقيقي مؤكد من رابط خرائط قوقل الذي أرسله العميل -->
+        <iframe
+          title="Barber And Friends Kungsholmen on Google Maps"
+          class="w-full h-full min-h-[320px]"
+          style="border:0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Barber+And+Friends+Kungsholmen,+Sankt+Eriksgatan+45,+112+34+Stockholm&output=embed">
+        </iframe>
+      </div>
+
+      <div id="contact" class="reveal">
+        <p class="text-brand-400 font-bold uppercase tracking-wide text-sm mb-2">Find Us</p>
+        <h2 class="text-3xl lg:text-4xl font-display tracking-wide text-white mb-6">Visit or Book a Chair</h2>
+
+        <div class="space-y-5 mb-8">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div>
+            <p class="font-medium text-slate-300">Sankt Eriksgatan 45, 112 34 Stockholm</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
+            <!-- TODO: ضع رقم الهاتف الحقيقي -->
+            <p class="font-medium text-slate-300">+46 8 XXX XX XX <span class="text-xs text-slate-600">(placeholder)</span></p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center"><i class="fa-solid fa-clock"></i></div>
+            <!-- TODO: أكّد ساعات العمل الحقيقية مع صاحب الصالون -->
+            <p class="font-medium text-slate-300">Mon–Fri 10:00–19:00, Sat 10:00–16:00 <span class="text-xs text-slate-600">(placeholder)</span></p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mb-10">
+          <!-- TODO: ضع روابط إنستغرام/فيسبوك الحقيقية للصالون -->
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-500 hover:text-ink-900 transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-500 hover:text-ink-900 transition"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-500 hover:text-ink-900 transition"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <form id="contactForm" class="bg-ink-800 p-6 rounded-2xl border border-white/10 space-y-4">
+          <input type="hidden" name="_subject" value="New booking request from the website" />
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Full name</label>
+            <input type="text" name="name" required class="w-full bg-ink-900 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Phone or email</label>
+            <input type="text" name="contact" required class="w-full bg-ink-900 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">What would you like to book?</label>
+            <textarea name="message" rows="3" required class="w-full bg-ink-900 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-brand-500 hover:bg-brand-400 text-ink-900 py-3.5 rounded-xl font-bold uppercase tracking-wide text-sm transition">Send Request</button>
+          <p id="formStatus" class="text-sm text-center hidden"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="bg-ink-900 border-t border-white/5 pt-16 pb-8 text-slate-500">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-10 mb-12">
+      <div>
+        <a href="#home" class="flex items-center gap-2 text-xl font-display tracking-wide text-white mb-4">
+          <i class="fa-solid fa-scissors text-brand-400"></i>
+          <span>BARBER &amp; FRIENDS</span>
+        </a>
+        <p class="text-sm leading-relaxed">Kungsholmen's barbershop for classic cuts and sharp beards.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wide">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#services" class="hover:text-brand-400 transition">Services</a></li>
+          <li><a href="#about" class="hover:text-brand-400 transition">About</a></li>
+          <li><a href="#location" class="hover:text-brand-400 transition">Location</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wide">Contact</h4>
+        <ul class="space-y-2 text-sm">
+          <li>Sankt Eriksgatan 45, 112 34 Stockholm</li>
+          <li>+46 8 XXX XX XX (placeholder)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/5 pt-6 text-center text-sm">
+      © <span id="year"></span> Barber And Friends — Kungsholmen.
+      <span class="opacity-60"> — Website by [your agency name here]</span>
+    </div>
+  </footer>
+
+  <button id="backToTop" aria-label="Back to top" class="hidden fixed bottom-6 right-6 w-11 h-11 rounded-full bg-brand-500 text-ink-900 shadow-lg items-center justify-center z-50">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

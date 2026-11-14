@@ -1,0 +1,6 @@
+Put real photos for this shop here (exterior, interior, barbers at work,
+finished cuts). Compress to under 300KB each (WebP or JPG), name them
+without spaces (hero.jpg, shop-1.jpg...), then in index.html replace the
+placeholder <div> blocks (search for "Put a real" / "fa-image") with:
+
+<img src="assets/img/hero.jpg" alt="..." class="<same classes as the div>" />
